@@ -6,23 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.movie.databinding.FragmentHomePageBinding
+import com.example.movie.databinding.FragmentLoginBinding
 import com.example.movie.databinding.FragmentSecondScreenBinding
 import com.example.movie.databinding.FragmentThirdScreenBinding
+import com.example.movie.ui.base.BaseFragment
 
-class HomePageFragment : Fragment() {
-
-    private lateinit var binding : FragmentHomePageBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageBinding::inflate)  {
 
 
-        binding = FragmentHomePageBinding.inflate(inflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        binding.toolbar.setTitle("HomePage")
-        return binding.root
+        binding.toolbar.title = "HomePage"
+
     }
 
 }

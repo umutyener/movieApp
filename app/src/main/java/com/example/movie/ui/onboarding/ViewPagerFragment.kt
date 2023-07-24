@@ -44,12 +44,8 @@ class ViewPagerFragment :  BaseFragment<FragmentViewPagerBinding>(FragmentViewPa
                 super.onPageSelected(position)
                 updatePageIndicator(position)
             }
-        })
-
-
-
-
-
+        }
+        )
 
     }
 

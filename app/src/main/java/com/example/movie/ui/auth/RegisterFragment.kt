@@ -9,38 +9,24 @@ import androidx.navigation.fragment.findNavController
 import com.example.movie.R
 import com.example.movie.databinding.FragmentLoginBinding
 import com.example.movie.databinding.FragmentRegisterBinding
+import com.example.movie.ui.base.BaseFragment
 
 
-class RegisterFragment : Fragment() {
+class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
 
-private lateinit var binding: FragmentRegisterBinding
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-
-
-        binding = FragmentRegisterBinding.inflate(inflater, container, false)
-
-
-        binding.textViewRegisterToLogin.setOnClickListener {
-
-            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-
-        }
-
-        binding.buttonRegister.setOnClickListener{
-            findNavController().navigate(R.id.action_registerFragment_to_homePageFragment)
-
-        }
-
-
-
-
-        return binding.root
-
+        loginAndRegisterButtonClickListener()
     }
 
+    private fun loginAndRegisterButtonClickListener() {
+        binding.buttonRegister.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_homePageFragment)
+        }
 
+        binding.textViewRegisterToLogin.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+    }
 }
