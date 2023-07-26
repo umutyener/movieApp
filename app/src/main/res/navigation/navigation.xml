@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/homePageFragment"
-        android:name="com.example.movie.ui.home.homePageFragment"
+        android:name="com.example.movie.ui.home.HomePageFragment"
         android:label="fragment_home_page"
         tools:layout="@layout/fragment_home_page" />
     <fragment
