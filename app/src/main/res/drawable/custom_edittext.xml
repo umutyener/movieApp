@@ -1,0 +1,31 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Odaklanmış durum -->
+    <item android:state_focused="true">
+        <shape>
+            <stroke
+                android:width="2dp"
+                android:color="@color/colorPrimary" />
+            <corners android:radius="30dp" />
+            <padding
+                android:left="16dp"
+                android:top="16dp"
+                android:right="16dp"
+                android:bottom="16dp" />
+        </shape>
+    </item>
+
+    <!-- Diğer durumlar (Odaklanmamış durum) -->
+    <item>
+        <shape>
+            <stroke
+                android:width="2dp"
+                android:color="@color/colorPrimarySoft" />
+            <corners android:radius="30dp" />
+            <padding
+                android:left="16dp"
+                android:top="16dp"
+                android:right="16dp"
+                android:bottom="16dp" />
+        </shape>
+    </item>
+</selector>

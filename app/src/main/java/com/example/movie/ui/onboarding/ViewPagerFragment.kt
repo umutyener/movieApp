@@ -2,11 +2,8 @@ package com.example.movie.ui.onboarding
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
-import com.example.movie.databinding.FragmentFirstScreenBinding
 import com.example.movie.databinding.FragmentViewPagerBinding
 import com.example.movie.ui.base.BaseFragment
 import com.example.movie.ui.onboarding.onboardingScreens.FirstScreenFragment

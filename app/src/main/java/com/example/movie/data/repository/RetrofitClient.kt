@@ -1,4 +1,6 @@
-import com.example.movie.Constants
+package com.example.movie.data.repository
+
+import com.example.movie.utils.Constants
 import com.example.movie.data.network.AuthApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

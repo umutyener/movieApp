@@ -3,13 +3,9 @@ package com.example.movie.ui.splash
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.movie.R
-import com.example.movie.databinding.FragmentHomePageBinding
 import com.example.movie.databinding.FragmentSplashBinding
 import com.example.movie.ui.base.BaseFragment
 

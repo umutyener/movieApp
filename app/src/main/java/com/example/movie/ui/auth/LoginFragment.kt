@@ -6,6 +6,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.movie.R
 import com.example.movie.data.model.LoginResponse
+import com.example.movie.data.repository.RetrofitClient
 import com.example.movie.databinding.FragmentLoginBinding
 import com.example.movie.ui.base.BaseFragment
 import retrofit2.Callback
@@ -16,11 +17,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loginAndRegisterButtonClickListener()
+        loginButtonClickListener()
+        loginToRegisterButtonClickListener()
     }
 
 
-    private fun loginAndRegisterButtonClickListener() {
+    private fun loginButtonClickListener() {
         binding.buttonLogin.setOnClickListener {
             val username = binding.editTextTextEmailAddress.text.toString()
             val password = binding.editTextTextPassword.text.toString()
@@ -34,17 +36,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         val authResponse = response.body()
                         if (authResponse != null) {
                             findNavController().navigate(R.id.action_loginFragment_to_homePageFragment)
-                            showSnackbar("Giriş başarili $authResponse")
+                            showSnackbar("Giris basarilli")
 
                         } else {
 
                             showSnackbar("AuthResponse boş.")
-
                         }
                     } else {
 
-                        showSnackbar("Giriş başarısız oldu")
-
+                        showSnackbar("${response.body()}")
                     }
                 }
 
@@ -54,6 +54,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             })
         }
 
+    }
+    private fun loginToRegisterButtonClickListener(){
         binding.textViewLoginToRegister.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }

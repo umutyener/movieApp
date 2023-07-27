@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#6456FF</color>
+    <color name="colorPrimarySoft">#252836</color>
     <color name="windowBackground">#1F1D2B</color>
     <color name="colorPrimaryVariant">#F44336</color>
     <color name="colorSecondary">#2196F3</color>
@@ -10,4 +11,5 @@
     <color name="onBoardingFabButtonColor">#6456FF</color>
     <color name="selected_color">#FF0000</color>
     <color name="unselected_color">#CCCCCC</color>
+
 </resources>

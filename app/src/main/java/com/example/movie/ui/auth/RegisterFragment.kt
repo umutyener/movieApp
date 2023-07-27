@@ -5,23 +5,25 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.movie.R
 import com.example.movie.data.model.RegisterResponse
+import com.example.movie.data.repository.RetrofitClient
 import com.example.movie.databinding.FragmentRegisterBinding
 import com.example.movie.ui.base.BaseFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loginAndRegisterButtonClickListener()
+        registerButtonClickListener()
+        registerToLoginButtonClickListener()
     }
 
-    private fun loginAndRegisterButtonClickListener() {
+    private fun registerButtonClickListener() {
         binding.buttonRegister.setOnClickListener {
+
             val email = binding.editTextTextEmailAddress.text.toString()
             val password = binding.editTextTextPassword.text.toString()
             val username = binding.editTextTextUsername.text.toString()
@@ -35,17 +37,19 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                     if (response.isSuccessful) {
                         val authResponse = response.body()
                         if (authResponse != null) {
-                            findNavController().navigate(R.id.action_loginFragment_to_homePageFragment)
-                            showSnackbar("Kayit başarili $authResponse")
+                            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                            showSnackbar("${authResponse.message}")
 
                         } else {
 
-                            showSnackbar("$authResponse AuthResponse boş.")
+                            if (authResponse != null) {
+                                showSnackbar("AuthResponse boş.${authResponse.message}")
+                            }
 
                         }
                     } else {
 
-                        showSnackbar(" kayit başarısız oldu")
+                        showSnackbar("${response.body()?.message}")
 
                     }
                 }
@@ -54,6 +58,11 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                     showSnackbar("Ağ hatası veya sunucu erişimi hatası.")
                 }
             })
+        }
+    }
+    private fun registerToLoginButtonClickListener(){
+        binding.textViewRegisterToLogin.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
     }
 }

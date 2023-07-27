@@ -1,9 +1,7 @@
 package com.example.movie.ui.onboarding.onboardingScreens
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.movie.R
