@@ -1,4 +1,4 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/colorPrimary" /> <!-- Kırmızı dolgu rengi -->
-    <size android:width="16dp" android:height="4dp" /> <!-- Genişlik ve yükseklik -->
+    <solid android:color="@color/colorPrimary" />
+    <size android:width="16dp" android:height="4dp" />
 </shape>

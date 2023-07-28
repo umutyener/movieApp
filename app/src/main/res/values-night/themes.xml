@@ -1,19 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Movie" parent="Theme.Material3.DayNight.NoActionBar">
-
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/selected_color</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="android:colorButtonNormal">#8BC34A</item>
         <item name="android:windowBackground">@color/windowBackground</item>
         <item name="android:statusBarColor">@color/windowBackground</item>
-
-
-
-
-
-
-
+        <item name="android:toolbarStyle">@style/CustomToolbarStyle</item>
     </style>
+
+    <style name="CustomToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/colorPrimaryVariant</item>
+    </style>
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
 </resources>

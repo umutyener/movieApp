@@ -18,27 +18,15 @@ class FirstScreenFragment :
         super.onViewCreated(view, savedInstanceState)
 
         nextButtonAndSkipButtonClickListener()
-
-
     }
+
   private fun nextButtonAndSkipButtonClickListener() {
-
-
         binding.nextButton.setOnClickListener {
-            viewPager?.currentItem = 1
-
-        }
+            viewPager?.currentItem = 1 }
 
         binding.skipButton.setOnClickListener {
-
-
             findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
-
-
         }
 
     }
-
-
-
 }

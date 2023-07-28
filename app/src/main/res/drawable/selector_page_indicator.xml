@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_selected="true" android:drawable="@drawable/selected_page_indicator" /> <!-- Seçilen durum için drawable olarak seçilen_page_indicator çizimi -->
-    <item android:drawable="@drawable/unselected_page_indicator" /> <!-- Seçilmemiş durum için drawable olarak seçilmeyen_page_indicator çizimi -->
+    <item android:state_selected="true" android:drawable="@drawable/selected_page_indicator" />
+    <item android:drawable="@drawable/unselected_page_indicator" />
 </selector>

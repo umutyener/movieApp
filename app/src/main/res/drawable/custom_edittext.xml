@@ -1,5 +1,5 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Odaklanmış durum -->
+    <!-- Focused state -->
     <item android:state_focused="true">
         <shape>
             <stroke
@@ -14,7 +14,7 @@
         </shape>
     </item>
 
-    <!-- Diğer durumlar (Odaklanmamış durum) -->
+    <!-- Other states (Unfocused state) -->
     <item>
         <shape>
             <stroke

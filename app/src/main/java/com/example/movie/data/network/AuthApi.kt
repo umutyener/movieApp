@@ -1,7 +1,7 @@
 package com.example.movie.data.network
 
-import com.example.movie.data.model.LoginResponse
-import com.example.movie.data.model.RegisterResponse
+import com.example.movie.data.model.authModel.LoginResponseModel
+import com.example.movie.data.model.authModel.RegisterResponseModel
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -14,7 +14,7 @@ interface AuthApi {
     fun login(
         @Field("username") username: String,
         @Field("password") password: String
-    ): Call<LoginResponse>
+    ): Call<LoginResponseModel>
 
     @FormUrlEncoded
     @POST("register/")
@@ -22,5 +22,5 @@ interface AuthApi {
         @Field("username") username: String,
         @Field("password") password: String,
         @Field("email") email: String
-    ): Call<RegisterResponse>
+    ): Call<RegisterResponseModel>
 }

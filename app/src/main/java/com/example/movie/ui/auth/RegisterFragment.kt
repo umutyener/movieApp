@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.movie.R
-import com.example.movie.data.model.RegisterResponse
+import com.example.movie.data.model.authModel.RegisterResponseModel
 import com.example.movie.data.repository.RetrofitClient
 import com.example.movie.databinding.FragmentRegisterBinding
 import com.example.movie.ui.base.BaseFragment
@@ -32,8 +32,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
             val call = authApi.register(username, password, email)
 
 
-            call.enqueue(object : Callback<RegisterResponse?> {
-                override fun onResponse(call: Call<RegisterResponse?>, response: Response<RegisterResponse?>) {
+            call.enqueue(object : Callback<RegisterResponseModel?> {
+                override fun onResponse(call: Call<RegisterResponseModel?>, response: Response<RegisterResponseModel?>) {
                     if (response.isSuccessful) {
                         val authResponse = response.body()
                         if (authResponse != null) {
@@ -54,7 +54,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                     }
                 }
 
-                override fun onFailure(call: Call<RegisterResponse?>, t: Throwable) {
+                override fun onFailure(call: Call<RegisterResponseModel?>, t: Throwable) {
                     showSnackbar("Ağ hatası veya sunucu erişimi hatası.")
                 }
             })
