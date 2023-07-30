@@ -5,7 +5,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.movie.R
 import com.example.movie.data.model.authModel.RegisterResponseModel
-import com.example.movie.data.repository.RetrofitClient
+import com.example.movie.ui.onboarding.onboardingScreens.repository.RetrofitClient
 import com.example.movie.databinding.FragmentRegisterBinding
 import com.example.movie.ui.base.BaseFragment
 import retrofit2.Call

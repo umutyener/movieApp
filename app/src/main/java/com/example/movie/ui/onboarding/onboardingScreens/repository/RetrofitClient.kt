@@ -1,4 +1,4 @@
-package com.example.movie.data.repository
+package com.example.movie.ui.onboarding.onboardingScreens.repository
 
 import com.example.movie.utils.Constants
 import com.example.movie.data.network.AuthApi
