@@ -4,84 +4,141 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.auth.RegisterFragment">
+    tools:context=".ui.auth.LoginFragment">
 
-    <TextView
-        android:id="@+id/textViewRegisterToLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="41dp"
-        android:text="Register To Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewStaticRegister"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbarLoginPage"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
+        android:gravity="center"
+        android:minHeight="?attr/actionBarSize"
+        android:navigationIcon="@drawable/ic_back_arrow"
+        android:textAlignment="center"
+        app:flow_horizontalAlign="center"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Register"
+        app:titleCentered="true"
+        app:titleTextAppearance="@style/Toolbar.TitleText"
+        tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/editTextTextEmailAddress"
+
+    <TextView
+        android:id="@+id/textViewWelcomeBack"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Let’s get started"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbarLoginPage" />
+
+    <TextView
+        android:id="@+id/textViewPleaseEnterYourDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="24dp"
+        android:text=" Please enter your details."
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWelcomeBack" />
+
+    <EditText
+        android:id="@+id/editTextUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_edittext"
         android:ems="10"
-        android:hint="Email"
+        android:hint="Username"
+        android:text="yener"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPleaseEnterYourDetails" />
+
+    <EditText
+        android:id="@+id/editTextEmailAdress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_edittext"
+        android:ems="10"
+        android:hint="Email Adress"
         android:inputType="textEmailAddress"
-        android:text="umut@gmail.com"
+        android:text="yener@g.com"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsername" />
 
     <EditText
-        android:id="@+id/editTextTextUsername"
-        android:layout_width="wrap_content"
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:hint="username"
-        android:inputType="text"
-        android:text="umut"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextEmailAddress"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
-
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_edittext"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:text="1234"
+        android:text="123456"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAdress" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:checked="true"
+        android:text="I agree to the Terms and Services and Privacy Policy"
+        android:textColor="#92929D"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
+        app:layout_constraintStart_toStartOf="@+id/editTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
     <Button
         android:id="@+id/buttonRegister"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="register"
-        app:layout_constraintBottom_toTopOf="@+id/textViewRegisterToLogin"
-        app:layout_constraintEnd_toEndOf="@+id/textViewRegisterToLogin"
-        app:layout_constraintStart_toStartOf="@+id/textViewRegisterToLogin"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar3"
-        android:layout_width="391dp"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="32dp"
+        android:text="Sign Up"
+        android:textColorLink="#B62525"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonRegister"
+        app:layout_constraintEnd_toEndOf="@+id/buttonRegister"
+        app:layout_constraintStart_toStartOf="@+id/buttonRegister"
+        app:layout_constraintTop_toTopOf="@+id/buttonRegister" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

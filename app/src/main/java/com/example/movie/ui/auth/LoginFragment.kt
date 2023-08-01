@@ -9,27 +9,28 @@ import com.example.movie.data.model.authModel.LoginResponseModel
 import com.example.movie.data.repository.RetrofitClient
 import com.example.movie.databinding.FragmentLoginBinding
 import com.example.movie.ui.base.BaseFragment
-import com.example.movie.utils.UtilFunction
+import com.example.movie.utils.UtilFunctions
+import org.json.JSONObject
 import retrofit2.Callback
 import retrofit2.Response
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 
-    private val utilFunction = UtilFunction()
+    private val utilFunction = UtilFunctions()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
-
         loginButtonClickListener()
         loginToRegisterButtonClickListener()
+
     }
 
 
     private fun loginButtonClickListener() {
+
         binding.buttonLogin.setOnClickListener {
+
             val email = binding.editTextTextEmailAddress.text.toString()
             val password = binding.editTextTextPassword.text.toString()
 
@@ -44,6 +45,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 return@setOnClickListener
             }
 
+
+            utilFunction.buttonProgress(binding.buttonLogin, binding.progressBar, true)
+
             val authApi = RetrofitClient.getAuthApi()
             val call = authApi.login(email, password)
 
@@ -53,18 +57,26 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         val authResponse = response.body()
                         if (authResponse != null) {
                             findNavController().navigate(R.id.action_loginFragment_to_homePageFragment)
-                            showSnackbar("Login successful.")
-
                         } else {
-                            showSnackbar("Incorrect username or password.")
+
+                            utilFunction.buttonProgress(binding.buttonLogin, binding.progressBar, false)
+                            showSnackbar("Response Error")
                         }
                     } else {
-
-                        showSnackbar("${response.body()?.error}")
+                        utilFunction.buttonProgress(binding.buttonLogin, binding.progressBar, false)
+                        try {
+                            val errorBody = response.errorBody()?.string()
+                            val errorMessage = JSONObject(errorBody).getString("error")
+                            showSnackbar(errorMessage)
+                        } catch (e: Exception) {
+                            showSnackbar("Server error.")
+                        }
                     }
                 }
 
                 override fun onFailure(call: Call<LoginResponseModel?>, t: Throwable) {
+                    utilFunction.buttonProgress(binding.buttonLogin, binding.progressBar, false)
+
                     showSnackbar("Network error or server access error.")
                 }
             })

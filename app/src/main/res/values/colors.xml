@@ -12,4 +12,13 @@
     <color name="selected_color">#FF0000</color>
     <color name="unselected_color">#CCCCCC</color>
     <color name="custom_toolbar_color">#AF1919</color>
+
+
+    <color name="snackBarDanger">#FF9191</color>
+    <color name="snackBarCaution">#FFC107</color>
+    <color name="snackBarSafety">#4CAF50</color>
+
+
+
+
 </resources>

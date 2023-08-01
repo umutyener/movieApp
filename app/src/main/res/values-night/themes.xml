@@ -7,6 +7,8 @@
         <item name="android:windowBackground">@color/windowBackground</item>
         <item name="android:statusBarColor">@color/windowBackground</item>
         <item name="android:toolbarStyle">@style/CustomToolbarStyle</item>
+
+
     </style>
 
     <style name="CustomToolbarStyle" parent="Widget.AppCompat.Toolbar">
