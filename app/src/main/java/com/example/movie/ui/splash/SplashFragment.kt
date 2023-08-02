@@ -7,7 +7,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.movie.R
 import com.example.movie.databinding.FragmentSplashBinding
-import com.example.movie.ui.base.BaseFragment
+import com.example.movie.ui.baseFragment.BaseFragment
 
 
 class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding::inflate) {

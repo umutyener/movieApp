@@ -1,39 +1,71 @@
 package com.example.movie.ui.auth
 
+import android.content.Context
 import android.os.Bundle
-import retrofit2.Call
+import android.text.TextWatcher
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.movie.R
-import com.example.movie.data.model.authModel.LoginResponseModel
-import com.example.movie.databinding.FragmentLoginBinding
+import com.example.movie.data.model.authModel.ForgetPasswordResponseModel
+import com.example.movie.databinding.FragmentOtpBinding
+import com.example.movie.databinding.FragmentResetPasswordBinding
 import com.example.movie.ui.baseFragment.BaseFragment
 import com.example.movie.ui.onboarding.onboardingScreens.repository.RetrofitClient
 import com.example.movie.utils.UtilFunctions
 import org.json.JSONObject
+import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
+class OtpFragment :  BaseFragment<FragmentOtpBinding>(FragmentOtpBinding::inflate){
+
 
     private val utilFunction = UtilFunctions()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loginButtonClickListener()
-        loginToRegisterButtonClickListener()
-        forgetPasswordButtonClickListener()
+          //  verifyOtpClickListener()
+        testVerifyOtpClickListener()
+
+        //setupOtpFields()
+
+       // otpEditText1.requestFocus()
+      //  showKeyboard()
 
     }
 
 
-    private fun loginButtonClickListener() {
 
-        binding.buttonLogin.setOnClickListener {
+
+
+    private fun testVerifyOtpClickListener(){
+
+
+        binding.buttonForgetPasswordNext.setOnClickListener {
+
+
+
+        }
+
+    }
+
+
+
+
+
+
+
+    /*private fun verifyOtpClickListener() {
+
+        binding.buttonForgetPasswordNext.setOnClickListener {
 
             val email = binding.editTextTextEmailAddress.text.toString()
-            val password = binding.editTextTextPassword.text.toString()
 
 
             if (!utilFunction.isEmailValid(email)) {
@@ -41,30 +73,26 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 return@setOnClickListener
             }
 
-            if (!utilFunction.isPasswordValid(password)) {
-                binding.editTextTextPassword.error = "The password field cannot be empty."
-                return@setOnClickListener
-            }
 
 
-            utilFunction.buttonProgress(binding.buttonLogin, binding.progressBar, true)
+            utilFunction.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, true)
 
             val authApi = RetrofitClient.getAuthApi()
-            val call = authApi.login(email, password)
+            val call = authApi.forgetPassword(email)
 
-            call.enqueue(object : Callback<LoginResponseModel?> {
-                override fun onResponse(call: Call<LoginResponseModel?>, response: Response<LoginResponseModel?>) {
+            call.enqueue(object : Callback<ForgetPasswordResponseModel?> {
+                override fun onResponse(call: Call<ForgetPasswordResponseModel?>, response: Response<ForgetPasswordResponseModel?>) {
                     if (response.isSuccessful) {
                         val authResponse = response.body()
                         if (authResponse != null) {
                             findNavController().navigate(R.id.action_loginFragment_to_homePageFragment)
                         } else {
 
-                            utilFunction.buttonProgress(binding.buttonLogin, binding.progressBar, false)
+                            utilFunction.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, false)
                             showSnackbar("Response Error")
                         }
                     } else {
-                        utilFunction.buttonProgress(binding.buttonLogin, binding.progressBar, false)
+                        utilFunction.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, false)
                         try {
                             val errorBody = response.errorBody()?.string()
                             val errorMessage = JSONObject(errorBody).getString("error")
@@ -75,26 +103,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                     }
                 }
 
-                override fun onFailure(call: Call<LoginResponseModel?>, t: Throwable) {
-                    utilFunction.buttonProgress(binding.buttonLogin, binding.progressBar, false)
+                override fun onFailure(call: Call<ForgetPasswordResponseModel?>, t: Throwable) {
+                    utilFunction.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, false)
 
                     showSnackbar("Network error or server access error.")
                 }
             })
         }
 
-    }
+    }*/
 
-    private fun loginToRegisterButtonClickListener(){
-        binding.textViewCreateAnAccount.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
-        }
-    }
-
-    private fun forgetPasswordButtonClickListener(){
-        binding.textViewForgotPassword.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_resetPasswordFragment)
-        }
-    }
 
 }

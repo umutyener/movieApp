@@ -20,5 +20,10 @@
 
 
 
+    <color name="otpInactiveColor">#808080</color>
+    <color name="otpActiveColor">#000000</color>
+
+
+
 
 </resources>

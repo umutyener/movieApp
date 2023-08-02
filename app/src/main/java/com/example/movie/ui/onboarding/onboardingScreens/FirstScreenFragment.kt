@@ -6,7 +6,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.movie.R
 import com.example.movie.databinding.FragmentFirstScreenBinding
-import com.example.movie.ui.base.BaseFragment
+import com.example.movie.ui.baseFragment.BaseFragment
 
 class FirstScreenFragment :
     BaseFragment<FragmentFirstScreenBinding>(FragmentFirstScreenBinding::inflate) {

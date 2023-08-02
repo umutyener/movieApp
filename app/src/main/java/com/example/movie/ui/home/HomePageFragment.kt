@@ -2,7 +2,7 @@ package com.example.movie.ui.home
 import android.os.Bundle
 import android.view.View
 import com.example.movie.databinding.FragmentHomePageBinding
-import com.example.movie.ui.base.BaseFragment
+import com.example.movie.ui.baseFragment.BaseFragment
 
 class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageBinding::inflate)  {
 

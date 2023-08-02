@@ -1,7 +1,7 @@
 package com.example.movie.ui.onboarding.onboardingScreens.repository
 
 import com.example.movie.utils.Constants
-import com.example.movie.data.network.AuthApi
+import com.example.movie.data.network.auth.AuthApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

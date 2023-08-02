@@ -5,12 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.example.movie.databinding.FragmentViewPagerBinding
-import com.example.movie.ui.base.BaseFragment
+import com.example.movie.ui.baseFragment.BaseFragment
 import com.example.movie.ui.onboarding.onboardingScreens.FirstScreenFragment
 import com.example.movie.ui.onboarding.onboardingScreens.SecondScreenFragment
 import com.example.movie.ui.onboarding.onboardingScreens.ThirdScreenFragment
 
-class ViewPagerFragment :  BaseFragment<FragmentViewPagerBinding>(FragmentViewPagerBinding::inflate) {
+class OnBoardingScreenViewPagerFragment :  BaseFragment<FragmentViewPagerBinding>(FragmentViewPagerBinding::inflate) {
 
     private val pageIndicatorViews = ArrayList<View>()
 
@@ -24,7 +24,7 @@ class ViewPagerFragment :  BaseFragment<FragmentViewPagerBinding>(FragmentViewPa
             SecondScreenFragment(),
             ThirdScreenFragment()
         )
-        val adapter = ViewPagerAdapter(
+        val adapter = OnBoardingScreenViewPagerAdapter(
             fragmentList,
             requireActivity().supportFragmentManager,
             lifecycle

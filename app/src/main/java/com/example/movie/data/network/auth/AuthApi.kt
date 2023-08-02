@@ -1,6 +1,8 @@
-    package com.example.movie.data.network
+    package com.example.movie.data.network.auth
 
+    import com.example.movie.data.model.authModel.ForgetPasswordResponseModel
     import com.example.movie.data.model.authModel.LoginResponseModel
+    import com.example.movie.data.model.authModel.OtpResponseModel
     import com.example.movie.data.model.authModel.RegisterResponseModel
     import retrofit2.Call
     import retrofit2.http.Field
@@ -25,4 +27,22 @@
             @Field("password") password: String,
             @Field("email") email: String
         ): Call<RegisterResponseModel>
+
+        @FormUrlEncoded
+        @POST("/sendEmail")
+        fun forgetPassword(
+            @Field("email") email: String
+        ): Call<ForgetPasswordResponseModel>
+
+        @FormUrlEncoded
+        @POST("/verifyCode")
+        fun sendOtp(
+            @Field("email") email: String,
+            @Field("code") code: String
+
+        ): Call<OtpResponseModel>
+
+
+
+
     }
