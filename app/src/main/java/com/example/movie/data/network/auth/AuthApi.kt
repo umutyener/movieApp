@@ -12,6 +12,7 @@
 
     interface AuthApi {
 
+        // Login
 
         @FormUrlEncoded
         @POST("login/")
@@ -19,6 +20,8 @@
             @Field("email") email: String,
             @Field("password") password: String
         ): Call<LoginResponseModel>
+
+        // Register
 
         @FormUrlEncoded
         @POST("register/")
@@ -28,21 +31,12 @@
             @Field("email") email: String
         ): Call<RegisterResponseModel>
 
+        // Forget password Send Email
+
         @FormUrlEncoded
-        @POST("/sendEmail")
-        fun forgetPassword(
+        @POST("sendEmail/")
+        fun forgetPasswordSendEmail(
             @Field("email") email: String
         ): Call<ForgetPasswordResponseModel>
-
-        @FormUrlEncoded
-        @POST("/verifyCode")
-        fun sendOtp(
-            @Field("email") email: String,
-            @Field("code") code: String
-
-        ): Call<OtpResponseModel>
-
-
-
 
     }

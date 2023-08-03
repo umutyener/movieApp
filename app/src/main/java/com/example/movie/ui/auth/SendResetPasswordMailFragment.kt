@@ -1,20 +1,22 @@
 package com.example.movie.ui.auth
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.movie.R
 import com.example.movie.data.model.authModel.ForgetPasswordResponseModel
-import com.example.movie.databinding.FragmentResetPasswordBinding
+import com.example.movie.databinding.FragmentSendResetPasswordMailBinding
 import com.example.movie.ui.baseFragment.BaseFragment
-import com.example.movie.ui.onboarding.onboardingScreens.repository.RetrofitClient
+import com.example.movie.data.repository.RetrofitClient
 import com.example.movie.utils.UtilFunctions
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ResetPasswordFragment :  BaseFragment<FragmentResetPasswordBinding>(FragmentResetPasswordBinding::inflate){
+class SendResetPasswordMailFragment :  BaseFragment<FragmentSendResetPasswordMailBinding>(FragmentSendResetPasswordMailBinding::inflate){
 
     private val utilFunction = UtilFunctions()
 
@@ -23,20 +25,12 @@ class ResetPasswordFragment :  BaseFragment<FragmentResetPasswordBinding>(Fragme
         super.onViewCreated(view, savedInstanceState)
 
 
-        //forgetPasswordClickListener()
-        testForgetPasswordClickListener()
+        forgetPasswordSendMailClickListener()
 
     }
 
-    private fun testForgetPasswordClickListener(){
 
-
-        binding.buttonForgetPasswordNext.setOnClickListener {
-            findNavController().navigate(R.id.action_resetPasswordFragment_to_otpFragment)
-
-        }
-    }
-    private fun forgetPasswordClickListener() {
+    private fun forgetPasswordSendMailClickListener() {
 
         binding.buttonForgetPasswordNext.setOnClickListener {
 
@@ -53,18 +47,20 @@ class ResetPasswordFragment :  BaseFragment<FragmentResetPasswordBinding>(Fragme
             utilFunction.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, true)
 
             val authApi = RetrofitClient.getAuthApi()
-            val call = authApi.forgetPassword(email)
+            val call = authApi.forgetPasswordSendEmail(email)
 
             call.enqueue(object : Callback<ForgetPasswordResponseModel?> {
                 override fun onResponse(call: Call<ForgetPasswordResponseModel?>, response: Response<ForgetPasswordResponseModel?>) {
                     if (response.isSuccessful) {
                         val authResponse = response.body()
                         if (authResponse != null) {
-                            findNavController().navigate(R.id.action_loginFragment_to_homePageFragment)
+                            findNavController().navigate(R.id.action_resetPasswordFragment_to_otpFragment)
+                            showSnackbar("${authResponse.success}")
+
                         } else {
 
                             utilFunction.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, false)
-                            showSnackbar("Response Error")
+                            showSnackbar("Something went wrong!")
                         }
                     } else {
                         utilFunction.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, false)
@@ -87,4 +83,7 @@ class ResetPasswordFragment :  BaseFragment<FragmentResetPasswordBinding>(Fragme
         }
 
     }
+
+
+
 }

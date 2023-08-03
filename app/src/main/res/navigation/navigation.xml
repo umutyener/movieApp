@@ -71,7 +71,7 @@
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
-        android:name="com.example.movie.ui.auth.ResetPasswordFragment"
+        android:name="com.example.movie.ui.auth.SendResetPasswordMailFragment"
         android:label="ResetPasswordFragment" >
         <action
             android:id="@+id/action_resetPasswordFragment_to_otpFragment"
@@ -80,5 +80,13 @@
     <fragment
         android:id="@+id/otpFragment"
         android:name="com.example.movie.ui.auth.OtpFragment"
-        android:label="OtpFragment" />
+        android:label="OtpFragment" >
+        <action
+            android:id="@+id/action_otpFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.movie.ui.auth.ChangePasswordFragment"
+        android:label="ChangePasswordFragment" />
 </navigation>

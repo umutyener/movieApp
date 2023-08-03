@@ -8,7 +8,7 @@ import com.example.movie.R
 import com.example.movie.data.model.authModel.LoginResponseModel
 import com.example.movie.databinding.FragmentLoginBinding
 import com.example.movie.ui.baseFragment.BaseFragment
-import com.example.movie.ui.onboarding.onboardingScreens.repository.RetrofitClient
+import com.example.movie.data.repository.RetrofitClient
 import com.example.movie.utils.UtilFunctions
 import org.json.JSONObject
 import retrofit2.Callback
