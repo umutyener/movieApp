@@ -11,7 +11,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.Movie"
         tools:targetApi="31">
@@ -23,20 +23,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+            <nav-graph android:value="@navigation/navigation" />
 
-        <activity
-            android:exported="true"
-            android:name=".ui.auth.ChangePasswordFragment"
-            android:label="Change Password">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
-                android:host="example.com"
-                android:pathPrefix="/reset_password" />
-            </intent-filter>
         </activity>
 
         <meta-data

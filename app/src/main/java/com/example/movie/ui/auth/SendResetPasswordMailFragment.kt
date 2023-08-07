@@ -1,12 +1,10 @@
 package com.example.movie.ui.auth
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.movie.R
-import com.example.movie.data.model.authModel.ForgetPasswordResponseModel
+import com.example.movie.data.model.authModel.ForgetPasswordSendEmailResponseModel
 import com.example.movie.databinding.FragmentSendResetPasswordMailBinding
 import com.example.movie.ui.baseFragment.BaseFragment
 import com.example.movie.data.repository.RetrofitClient
@@ -44,13 +42,14 @@ class SendResetPasswordMailFragment :  BaseFragment<FragmentSendResetPasswordMai
 
 
 
+
             utilFunction.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, true)
 
             val authApi = RetrofitClient.getAuthApi()
             val call = authApi.forgetPasswordSendEmail(email)
 
-            call.enqueue(object : Callback<ForgetPasswordResponseModel?> {
-                override fun onResponse(call: Call<ForgetPasswordResponseModel?>, response: Response<ForgetPasswordResponseModel?>) {
+            call.enqueue(object : Callback<ForgetPasswordSendEmailResponseModel?> {
+                override fun onResponse(call: Call<ForgetPasswordSendEmailResponseModel?>, response: Response<ForgetPasswordSendEmailResponseModel?>) {
                     if (response.isSuccessful) {
                         val authResponse = response.body()
                         if (authResponse != null) {
@@ -74,7 +73,7 @@ class SendResetPasswordMailFragment :  BaseFragment<FragmentSendResetPasswordMai
                     }
                 }
 
-                override fun onFailure(call: Call<ForgetPasswordResponseModel?>, t: Throwable) {
+                override fun onFailure(call: Call<ForgetPasswordSendEmailResponseModel?>, t: Throwable) {
                     utilFunction.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, false)
 
                     showSnackbar("Network error or server access error.")

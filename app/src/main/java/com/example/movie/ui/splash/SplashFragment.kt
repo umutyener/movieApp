@@ -24,7 +24,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
 
             }else{
-                findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
+                findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
             }
         }, 1000)
 
@@ -40,6 +40,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
 
 
-        return sharedPref.getBoolean("Finished", false)
+        return sharedPref.getBoolean("Finished", true)
     }
 }

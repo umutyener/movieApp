@@ -1,16 +1,16 @@
 package com.example.movie.ui.auth
 
 import android.os.Bundle
-import retrofit2.Call
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.movie.R
 import com.example.movie.data.model.authModel.LoginResponseModel
+import com.example.movie.data.repository.RetrofitClient
 import com.example.movie.databinding.FragmentLoginBinding
 import com.example.movie.ui.baseFragment.BaseFragment
-import com.example.movie.data.repository.RetrofitClient
 import com.example.movie.utils.UtilFunctions
 import org.json.JSONObject
+import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -53,14 +53,21 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             val call = authApi.login(email, password)
 
             call.enqueue(object : Callback<LoginResponseModel?> {
-                override fun onResponse(call: Call<LoginResponseModel?>, response: Response<LoginResponseModel?>) {
+                override fun onResponse(
+                    call: Call<LoginResponseModel?>,
+                    response: Response<LoginResponseModel?>
+                ) {
                     if (response.isSuccessful) {
                         val authResponse = response.body()
                         if (authResponse != null) {
                             findNavController().navigate(R.id.action_loginFragment_to_homePageFragment)
                         } else {
 
-                            utilFunction.buttonProgress(binding.buttonLogin, binding.progressBar, false)
+                            utilFunction.buttonProgress(
+                                binding.buttonLogin,
+                                binding.progressBar,
+                                false
+                            )
                             showSnackbar("Response Error")
                         }
                     } else {
@@ -68,7 +75,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         try {
                             val errorBody = response.errorBody()?.string()
                             val errorMessage = JSONObject(errorBody).getString("error")
-                            showSnackbar(errorMessage)
+                            showSnackbar(errorMessage, R.color.snackBarCaution)
                         } catch (e: Exception) {
                             showSnackbar("Server error.")
                         }
@@ -85,13 +92,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     }
 
-    private fun loginToRegisterButtonClickListener(){
+    private fun loginToRegisterButtonClickListener() {
         binding.textViewCreateAnAccount.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
     }
 
-    private fun forgetPasswordButtonClickListener(){
+    private fun forgetPasswordButtonClickListener() {
         binding.textViewForgotPassword.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_resetPasswordFragment)
         }

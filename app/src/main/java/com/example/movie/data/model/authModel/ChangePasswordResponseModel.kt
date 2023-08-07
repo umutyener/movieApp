@@ -1,9 +1,7 @@
 package com.example.movie.data.model.authModel
 
-data class ForgetPasswordResponseModel(
 
+data class ChangePasswordResponseModel(
     val success: String? = null,
-    val error: String? = null,
-
-
-    )
+    val error: String? = null
+)

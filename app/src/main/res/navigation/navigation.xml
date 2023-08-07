@@ -64,7 +64,9 @@
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_registerFragment_to_homePageFragment"
-            app:destination="@id/homePageFragment" />
+            app:destination="@id/homePageFragment"
+            app:popUpTo="@id/registerFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -75,7 +77,9 @@
         android:label="ResetPasswordFragment" >
         <action
             android:id="@+id/action_resetPasswordFragment_to_otpFragment"
-            app:destination="@id/otpFragment" />
+            app:destination="@id/otpFragment"
+            app:popUpTo="@id/resetPasswordFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/otpFragment"
@@ -83,10 +87,27 @@
         android:label="OtpFragment" >
         <action
             android:id="@+id/action_otpFragment_to_changePasswordFragment"
-            app:destination="@id/changePasswordFragment" />
+            app:destination="@id/changePasswordFragment"
+            app:popUpTo="@id/otpFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
         android:name="com.example.movie.ui.auth.ChangePasswordFragment"
-        android:label="ChangePasswordFragment" />
+        android:label="ChangePasswordFragment">
+        <argument
+            android:name="resetToken"
+            android:defaultValue="0"
+            app:argType="string" />
+        <deepLink
+            android:id="@+id/deepLink2"
+            app:uri="https://example.com/reset_password?reset_token=${resetToken}" />
+        <action
+            android:id="@+id/action_changePasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/changePasswordFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
 </navigation>
