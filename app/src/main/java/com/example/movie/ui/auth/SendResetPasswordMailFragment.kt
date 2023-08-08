@@ -7,7 +7,7 @@ import com.example.movie.R
 import com.example.movie.data.model.authModel.ForgetPasswordSendEmailResponseModel
 import com.example.movie.databinding.FragmentSendResetPasswordMailBinding
 import com.example.movie.ui.baseFragment.BaseFragment
-import com.example.movie.data.repository.RetrofitClient
+import com.example.movie.data.repository.AuthClient
 import com.example.movie.utils.UtilFunctions
 import org.json.JSONObject
 import retrofit2.Call
@@ -45,7 +45,7 @@ class SendResetPasswordMailFragment :  BaseFragment<FragmentSendResetPasswordMai
 
             utilFunction.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, true)
 
-            val authApi = RetrofitClient.getAuthApi()
+            val authApi = AuthClient.getAuthApi()
             val call = authApi.forgetPasswordSendEmail(email)
 
             call.enqueue(object : Callback<ForgetPasswordSendEmailResponseModel?> {

@@ -5,11 +5,11 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.movie.R
-import com.example.movie.databinding.FragmentFirstScreenBinding
+import com.example.movie.databinding.FragmentOnboardingFirstScreenBinding
 import com.example.movie.ui.baseFragment.BaseFragment
 
-class FirstScreenFragment :
-    BaseFragment<FragmentFirstScreenBinding>(FragmentFirstScreenBinding::inflate) {
+class OnBoardingFirstScreenFragment :
+    BaseFragment<FragmentOnboardingFirstScreenBinding>(FragmentOnboardingFirstScreenBinding::inflate) {
 
     private val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
 

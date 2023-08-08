@@ -6,7 +6,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.movie.R
 import com.example.movie.data.model.authModel.ChangePasswordResponseModel
-import com.example.movie.data.repository.RetrofitClient
+import com.example.movie.data.repository.AuthClient
 import com.example.movie.databinding.FragmentChangePasswordBinding
 import com.example.movie.ui.baseFragment.BaseFragment
 import com.example.movie.utils.UtilFunctions
@@ -58,7 +58,7 @@ class ChangePasswordFragment :
 
             utilFunction.buttonProgress(binding.buttonChangePassword, binding.progressBar, true)
 
-            val authApi = RetrofitClient.getAuthApi()
+            val authApi = AuthClient.getAuthApi()
             val call = authApi.changePassword(resetToken,password)
 
             call.enqueue(object : Callback<ChangePasswordResponseModel?> {

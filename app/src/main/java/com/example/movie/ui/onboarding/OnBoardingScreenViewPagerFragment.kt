@@ -4,13 +4,13 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
-import com.example.movie.databinding.FragmentViewPagerBinding
+import com.example.movie.databinding.FragmentOnboardingViewPagerBinding
 import com.example.movie.ui.baseFragment.BaseFragment
-import com.example.movie.ui.onboarding.onboardingScreens.FirstScreenFragment
-import com.example.movie.ui.onboarding.onboardingScreens.SecondScreenFragment
-import com.example.movie.ui.onboarding.onboardingScreens.ThirdScreenFragment
+import com.example.movie.ui.onboarding.onboardingScreens.OnBoardingFirstScreenFragment
+import com.example.movie.ui.onboarding.onboardingScreens.OnBoardingSecondScreenFragment
+import com.example.movie.ui.onboarding.onboardingScreens.OnBoardingThirdScreenFragment
 
-class OnBoardingScreenViewPagerFragment :  BaseFragment<FragmentViewPagerBinding>(FragmentViewPagerBinding::inflate) {
+class OnBoardingScreenViewPagerFragment :  BaseFragment<FragmentOnboardingViewPagerBinding>(FragmentOnboardingViewPagerBinding::inflate) {
 
     private val pageIndicatorViews = ArrayList<View>()
 
@@ -20,9 +20,9 @@ class OnBoardingScreenViewPagerFragment :  BaseFragment<FragmentViewPagerBinding
 
 
         val fragmentList = arrayListOf<Fragment>(
-            FirstScreenFragment(),
-            SecondScreenFragment(),
-            ThirdScreenFragment()
+            OnBoardingFirstScreenFragment(),
+            OnBoardingSecondScreenFragment(),
+            OnBoardingThirdScreenFragment()
         )
         val adapter = OnBoardingScreenViewPagerAdapter(
             fragmentList,

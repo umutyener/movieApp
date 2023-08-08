@@ -5,7 +5,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.movie.R
 import com.example.movie.data.model.authModel.RegisterResponseModel
-import com.example.movie.data.repository.RetrofitClient
+import com.example.movie.data.repository.AuthClient
 import com.example.movie.databinding.FragmentRegisterBinding
 import com.example.movie.ui.baseFragment.BaseFragment
 import com.example.movie.utils.UtilFunctions
@@ -45,7 +45,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
             utilFunction.buttonProgress(binding.buttonRegister, binding.progressBar, true)
 
 
-            val authApi = RetrofitClient.getAuthApi()
+            val authApi = AuthClient.getAuthApi()
             val call = authApi.register(username, password, email)
 
 
@@ -57,7 +57,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                     if (response.isSuccessful) {
                         val authResponse = response.body()
                         if (authResponse != null) {
-                            findNavController().navigate(R.id.action_registerFragment_to_homePageFragment)
+                            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
 
                         }
                     } else {

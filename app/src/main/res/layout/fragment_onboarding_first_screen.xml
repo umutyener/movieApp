@@ -4,21 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.onboarding.onboardingScreens.SecondScreenFragment"
-    tools:layout_editor_absoluteY="25dp">
+    tools:context=".ui.onboarding.onboardingScreens.OnBoardingFirstScreenFragment">
 
     <ImageView
-        android:id="@+id/onboardingBackground"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:foregroundGravity="fill_horizontal|fill_vertical|fill"
+        android:id="@+id/onboardingBackground1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        android:src="@drawable/onboarding1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/onboarding2" />
+        app:srcCompat="@drawable/onboarding1" />
 
     <TextView
         android:id="@+id/skipButton"
@@ -44,9 +43,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5">
+            android:layout_gravity="top">
 
             <TextView
                 android:id="@+id/textViewTittle"
@@ -86,7 +83,7 @@
                 app:layout_constraintVertical_bias="0.247" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/nextButtonSecond"
+                android:id="@+id/nextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"

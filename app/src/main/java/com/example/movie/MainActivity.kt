@@ -11,25 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-      //  dataProcessingWithDeepLink()
+
     }
-
-
-    /*
-
-    private fun dataProcessingWithDeepLink(){
-        val data: Uri? = intent?.data
-        if (data != null && data.scheme == "https" && data.host == "example.com" && data.path == "/reset_password" && data.encodedQuery != null) {
-            val encodedQuery = data.encodedQuery!!.substringAfter("reset_token=")
-
-
-
-
-        }
-    }
-
-    */
-
-
 }
 

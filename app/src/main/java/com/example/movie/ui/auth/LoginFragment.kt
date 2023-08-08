@@ -5,7 +5,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.movie.R
 import com.example.movie.data.model.authModel.LoginResponseModel
-import com.example.movie.data.repository.RetrofitClient
+import com.example.movie.data.repository.AuthClient
 import com.example.movie.databinding.FragmentLoginBinding
 import com.example.movie.ui.baseFragment.BaseFragment
 import com.example.movie.utils.UtilFunctions
@@ -49,7 +49,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
             utilFunction.buttonProgress(binding.buttonLogin, binding.progressBar, true)
 
-            val authApi = RetrofitClient.getAuthApi()
+            val authApi = AuthClient.getAuthApi()
             val call = authApi.login(email, password)
 
             call.enqueue(object : Callback<LoginResponseModel?> {
@@ -60,6 +60,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                     if (response.isSuccessful) {
                         val authResponse = response.body()
                         if (authResponse != null) {
+                            showSnackbar("${authResponse.success}",R.color.snackBarSafety)
+
                             findNavController().navigate(R.id.action_loginFragment_to_homePageFragment)
                         } else {
 
@@ -86,6 +88,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                     utilFunction.buttonProgress(binding.buttonLogin, binding.progressBar, false)
 
                     showSnackbar("Network error or server access error.")
+                    findNavController().navigate(R.id.action_loginFragment_to_homePageFragment)
+
                 }
             })
         }

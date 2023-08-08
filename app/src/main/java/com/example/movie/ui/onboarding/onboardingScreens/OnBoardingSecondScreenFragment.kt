@@ -5,22 +5,27 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.movie.R
-import com.example.movie.databinding.FragmentThirdScreenBinding
+import com.example.movie.databinding.FragmentOnboardingSecondScreenBinding
 import com.example.movie.ui.baseFragment.BaseFragment
 
-class ThirdScreenFragment :   BaseFragment<FragmentThirdScreenBinding>(FragmentThirdScreenBinding::inflate)  {
+class OnBoardingSecondScreenFragment :   BaseFragment<FragmentOnboardingSecondScreenBinding>(FragmentOnboardingSecondScreenBinding::inflate)  {
     private val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        buttonOnBoardingFinishClickListener()
+        nextButtonAndSkipButtonClickListener()
 
     }
 
-    private fun buttonOnBoardingFinishClickListener() {
+    private fun nextButtonAndSkipButtonClickListener() {
 
-        binding.buttonOnBoardingFinish.setOnClickListener {
+
+        binding.nextButtonSecond.setOnClickListener {
+            viewPager?.setCurrentItem(1)
+        }
+
+        binding.skipButton.setOnClickListener {
 
 
             findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
