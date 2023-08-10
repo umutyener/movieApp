@@ -22,7 +22,7 @@ class OnBoardingSecondScreenFragment :   BaseFragment<FragmentOnboardingSecondSc
 
 
         binding.nextButtonSecond.setOnClickListener {
-            viewPager?.setCurrentItem(1)
+            viewPager?.currentItem = 1
         }
 
         binding.skipButton.setOnClickListener {

@@ -18,7 +18,7 @@ class UtilFunctions {
     }
 
     public fun isUsernameValid(username: String): Boolean {
-        return username.length >= 3 && username.length <= 15
+        return username.length in 3..15
     }
 
     public fun isPasswordValid(password: String): Boolean {

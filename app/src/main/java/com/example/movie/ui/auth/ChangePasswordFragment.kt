@@ -104,7 +104,7 @@ class ChangePasswordFragment :
                         false
                     )
 
-                    showSnackbar("Network error or server access error.",R.color.snackBarDanger)
+                    showSnackbar("Network error or server access error.",R.color.snackBarCaution)
                 }
             })
         }

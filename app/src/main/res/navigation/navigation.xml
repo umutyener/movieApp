@@ -91,7 +91,7 @@
             app:argType="string" />
         <deepLink
             android:id="@+id/deepLink2"
-            app:uri="https://example.com/reset_password?reset_token=${resetToken}" />
+            app:uri="https://example.com/reset_password?reset_token={resetToken}" />
         <action
             android:id="@+id/action_changePasswordFragment_to_loginFragment"
             app:destination="@id/loginFragment"

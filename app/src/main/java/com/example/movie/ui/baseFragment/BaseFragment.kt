@@ -24,7 +24,6 @@ open class BaseFragment<Binding : ViewBinding>(private val inflate: Inflate<Bind
         _binding = inflate.invoke(inflater, container, false)
         return binding.root
     }
-
     protected fun showSnackbar(message: String, colorResId: Int? = null) {
         val snackbar = Snackbar.make(requireView(), message, Snackbar.LENGTH_LONG)
         if (colorResId != null) {
@@ -33,6 +32,7 @@ open class BaseFragment<Binding : ViewBinding>(private val inflate: Inflate<Bind
         }
         snackbar.show()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
