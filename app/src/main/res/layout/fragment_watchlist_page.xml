@@ -5,7 +5,7 @@
     android:id="@+id/constraitLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.WatchlistPageFragment">
+    tools:context=".ui.home.watchlist.WatchlistPageFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/watchlistPageToolbar"

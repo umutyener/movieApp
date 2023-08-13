@@ -23,7 +23,8 @@ class OnBoardingThirdScreenFragment :   BaseFragment<FragmentOnboardingThirdScre
         binding.buttonOnBoardingFinish.setOnClickListener {
 
 
-            findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
+            findNavController().navigate(R.id.action_viewPagerFragment_to_registerOrLoginFragment)
+
 
 
         }

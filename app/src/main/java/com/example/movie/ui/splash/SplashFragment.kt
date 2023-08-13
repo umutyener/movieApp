@@ -24,7 +24,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
 
             }else{
-                findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
             }
         }, 1000)
 

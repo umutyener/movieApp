@@ -28,7 +28,7 @@ class OnBoardingSecondScreenFragment :   BaseFragment<FragmentOnboardingSecondSc
         binding.skipButton.setOnClickListener {
 
 
-            findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
+            findNavController().navigate(R.id.action_viewPagerFragment_to_registerOrLoginFragment)
 
 
         }

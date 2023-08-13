@@ -1,4 +1,4 @@
-package com.example.movie.ui.home
+package com.example.movie.ui.home.feed
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

@@ -25,6 +25,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         loginToRegisterButtonClickListener()
         forgetPasswordButtonClickListener()
 
+
+
     }
 
 

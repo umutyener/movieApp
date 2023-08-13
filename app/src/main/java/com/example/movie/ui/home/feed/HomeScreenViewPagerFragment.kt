@@ -1,4 +1,4 @@
-package com.example.movie.ui.home
+package com.example.movie.ui.home.feed
 
 import android.os.Bundle
 import android.view.View
@@ -7,6 +7,11 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.movie.R
 import com.example.movie.databinding.FragmentViewPagerHomeBinding
 import com.example.movie.ui.baseFragment.BaseFragment
+import com.example.movie.ui.home.feed.HomePageFragment
+import com.example.movie.ui.home.feed.HomeScreenViewPagerAdapter
+import com.example.movie.ui.home.profile.ProfilePageFragment
+import com.example.movie.ui.home.search.SearchPageFragment
+import com.example.movie.ui.home.watchlist.WatchlistPageFragment
 
 
 class HomeScreenViewPagerFragment :

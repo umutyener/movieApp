@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
     app:startDestination="@id/splashFragment">
-
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.movie.ui.splash.SplashFragment"
@@ -21,8 +20,10 @@
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_splashFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_splashFragment_to_registerOrLoginFragment"
+            app:destination="@id/registerOrLoginFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
@@ -30,8 +31,8 @@
         android:label="fragment_view_pager"
         tools:layout="@layout/fragment_onboarding_view_pager" >
         <action
-            android:id="@+id/action_viewPagerFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
+            android:id="@+id/action_viewPagerFragment_to_registerOrLoginFragment"
+            app:destination="@id/registerOrLoginFragment"
             app:popUpTo="@id/viewPagerFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -80,6 +81,11 @@
             app:destination="@id/changePasswordFragment"
             app:popUpTo="@id/otpFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_otpFragment_to_resetPasswordFragment"
+            app:destination="@id/resetPasswordFragment"
+            app:popUpTo="@id/otpFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
@@ -101,8 +107,21 @@
     </fragment>
     <fragment
         android:id="@+id/homeScreenViewPagerFragment"
-        android:name="com.example.movie.ui.home.HomeScreenViewPagerFragment"
+        android:name="com.example.movie.ui.home.feed.HomeScreenViewPagerFragment"
         android:label="fragment_view_pager_home"
         tools:layout="@layout/fragment_view_pager_home" />
+    <fragment
+        android:id="@+id/registerOrLoginFragment"
+        android:name="com.example.movie.ui.auth.RegisterOrLoginFragment"
+        android:label="fragment_register_or_login"
+        tools:layout="@layout/fragment_register_or_login" >
+        <action
+            android:id="@+id/action_registerOrLoginFragment_to_loginFragment2"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_registerOrLoginFragment_to_registerFragment2"
+            app:destination="@id/registerFragment" />
+    </fragment>
+
 
 </navigation>

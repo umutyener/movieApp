@@ -28,10 +28,12 @@
 
     <TextView
         android:id="@+id/textViewWelcomeBack"
-        android:layout_width="124dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="40dp"
-        android:text="Let’s get started"
+        android:layout_marginEnd="32dp"
+        android:text="Let’s get\nstarted"
         android:textAlignment="center"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
