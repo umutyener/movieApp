@@ -7,7 +7,7 @@ import com.example.movie.R
 import com.example.movie.data.model.authModel.ForgetPasswordSendEmailResponseModel
 import com.example.movie.databinding.FragmentSendResetPasswordMailBinding
 import com.example.movie.ui.baseFragment.BaseFragment
-import com.example.movie.data.repository.AuthClient
+import com.example.movie.data.repository.RetrofitClient
 import com.example.movie.utils.UtilFunctions
 import org.json.JSONObject
 import retrofit2.Call
@@ -18,6 +18,11 @@ class SendResetPasswordMailFragment :  BaseFragment<FragmentSendResetPasswordMai
 
     private val utilFunction = UtilFunctions()
 
+
+    private val emailValidString: String by lazy { getString(R.string.emailValidString) }
+    private val passwordValidString: String by lazy { getString(R.string.passwordValidString) }
+    private val unexpectedErrorString: String by lazy { getString(R.string.unexpectedErrorString) }
+    private val networkErrorOrServerAccessError: String by lazy { getString(R.string.networkErrorOrServerAccessError) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,19 +38,15 @@ class SendResetPasswordMailFragment :  BaseFragment<FragmentSendResetPasswordMai
         binding.buttonForgetPasswordNext.setOnClickListener {
 
             val email = binding.editTextTextEmailAddress.text.toString()
-
-
-            if (!utilFunction.isEmailValid(email)) {
-                binding.editTextTextEmailAddress.error = "Please enter a valid e-mail address."
+            if (!UtilFunctions.isEmailValid(email)) {
+                binding.editTextTextEmailAddress.error = emailValidString
                 return@setOnClickListener
             }
 
 
+            UtilFunctions.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, true)
 
-
-            utilFunction.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, true)
-
-            val authApi = AuthClient.getAuthApi()
+            val authApi = RetrofitClient.getAuthApi()
             val call = authApi.forgetPasswordSendEmail(email)
 
             call.enqueue(object : Callback<ForgetPasswordSendEmailResponseModel?> {
@@ -58,25 +59,25 @@ class SendResetPasswordMailFragment :  BaseFragment<FragmentSendResetPasswordMai
 
                         } else {
 
-                            utilFunction.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, false)
-                            showSnackbar("Something went wrong!")
+                            UtilFunctions.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, false)
+                            showSnackbar(unexpectedErrorString, R.color.snackBarDanger)
                         }
                     } else {
-                        utilFunction.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, false)
+                        UtilFunctions.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, false)
                         try {
                             val errorBody = response.errorBody()?.string()
                             val errorMessage = JSONObject(errorBody).getString("error")
                             showSnackbar(errorMessage)
                         } catch (e: Exception) {
-                            showSnackbar("Server error.")
+                            showSnackbar(unexpectedErrorString, R.color.snackBarDanger)
                         }
                     }
                 }
 
                 override fun onFailure(call: Call<ForgetPasswordSendEmailResponseModel?>, t: Throwable) {
-                    utilFunction.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, false)
+                    UtilFunctions.buttonProgress(binding.buttonForgetPasswordNext, binding.progressBar, false)
 
-                    showSnackbar("Network error or server access error.")
+                    showSnackbar(networkErrorOrServerAccessError, R.color.snackBarDanger)
                 }
             })
         }

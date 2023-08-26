@@ -3,29 +3,28 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#6456FF</color>
-    <color name="colorPrimary2">#51C5AA</color>
+
 
     <color name="colorPrimarySoft">#252836</color>
     <color name="windowBackground">#1F1D2B</color>
     <color name="colorPrimaryVariant">#F44336</color>
     <color name="colorSecondary">#2196F3</color>
     <color name="colorOnSurface">#FFEB3B</color>
-    <color name="onBoardingFabButtonColor">#6456FF</color>
     <color name="selected_color">#FF0000</color>
     <color name="unselected_color">#CCCCCC</color>
     <color name="custom_toolbar_color">#AF1919</color>
+    <color name="movieItemCardColor">#252836</color>
 
 
-    <color name="snackBarDanger">#FF9191</color>
+
+
+    <color name="snackBarDanger">#FF6F6F</color>
     <color name="snackBarCaution">#FFC107</color>
     <color name="snackBarSafety">#4CAF50</color>
-
-
 
     <color name="otpInactiveColor">#808080</color>
     <color name="otpActiveColor">#000000</color>
 
-    <color name="movieCardColor">#252836</color>
 
 
 

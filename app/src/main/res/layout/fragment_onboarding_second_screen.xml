@@ -93,7 +93,7 @@
                 android:layout_marginBottom="32dp"
                 android:clickable="true"
                 android:src="@drawable/fabvector"
-                app:backgroundTint="@color/onBoardingFabButtonColor"
+                app:backgroundTint="@color/colorPrimary"
                 app:fabSize="mini"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

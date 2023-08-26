@@ -18,7 +18,6 @@ class OnBoardingScreenViewPagerFragment :  BaseFragment<FragmentOnboardingViewPa
         super.onViewCreated(view, savedInstanceState)
 
 
-
         val fragmentList = arrayListOf<Fragment>(
             OnBoardingFirstScreenFragment(),
             OnBoardingSecondScreenFragment(),
@@ -49,7 +48,9 @@ class OnBoardingScreenViewPagerFragment :  BaseFragment<FragmentOnboardingViewPa
     private fun updatePageIndicator(currentPosition: Int) {
         for (i in 0 until pageIndicatorViews.size) {
             pageIndicatorViews[i].isSelected = i == currentPosition
+
         }
+
 
 }
 }

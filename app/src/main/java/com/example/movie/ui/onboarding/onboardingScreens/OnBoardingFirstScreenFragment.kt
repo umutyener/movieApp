@@ -18,6 +18,7 @@ class OnBoardingFirstScreenFragment :
         super.onViewCreated(view, savedInstanceState)
 
         nextButtonAndSkipButtonClickListener()
+        detailPageButtonClickListener()
     }
 
   private fun nextButtonAndSkipButtonClickListener() {
@@ -28,5 +29,13 @@ class OnBoardingFirstScreenFragment :
             findNavController().navigate(R.id.action_viewPagerFragment_to_registerOrLoginFragment)
         }
 
+    }
+
+    private fun detailPageButtonClickListener() {
+        binding.detailPageButton.setOnClickListener {
+
+            findNavController().navigate(R.id.action_viewPagerFragment_to_detailPageFragment)
+
+        }
     }
 }

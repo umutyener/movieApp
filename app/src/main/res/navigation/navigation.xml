@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/homeScreenViewPagerFragment">
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.movie.ui.splash.SplashFragment"
@@ -35,6 +35,9 @@
             app:destination="@id/registerOrLoginFragment"
             app:popUpTo="@id/viewPagerFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_viewPagerFragment_to_detailPageFragment"
+            app:destination="@id/detailPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -97,7 +100,7 @@
             app:argType="string" />
         <deepLink
             android:id="@+id/deepLink2"
-            app:uri="https://example.com/reset_password?reset_token={resetToken}" />
+            app:uri="https://example.com/reset_password?reset_token=656145" />
         <action
             android:id="@+id/action_changePasswordFragment_to_loginFragment"
             app:destination="@id/loginFragment"
@@ -107,7 +110,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeScreenViewPagerFragment"
-        android:name="com.example.movie.ui.home.feed.HomeScreenViewPagerFragment"
+        android:name="com.example.movie.ui.home.HomeScreenViewPagerFragment"
         android:label="fragment_view_pager_home"
         tools:layout="@layout/fragment_view_pager_home" />
     <fragment
@@ -122,6 +125,11 @@
             android:id="@+id/action_registerOrLoginFragment_to_registerFragment2"
             app:destination="@id/registerFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailPageFragment"
+        android:name="com.example.movie.ui.detail.DetailPageFragment"
+        android:label="fragment_detail_page"
+        tools:layout="@layout/fragment_detail_page" />
 
 
 </navigation>

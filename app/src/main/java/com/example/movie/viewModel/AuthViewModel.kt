@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.movie.data.model.authModel.LoginResponseModel
-import com.example.movie.data.repository.AuthClient
+import com.example.movie.data.repository.RetrofitClient
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,7 +17,7 @@ class AuthViewModel : ViewModel() {
     val loginResult: LiveData<LoginResult> = _loginResult
 
     fun performLogin(email: String, password: String) {
-        val authApi = AuthClient.getAuthApi()
+        val authApi = RetrofitClient.getAuthApi()
         val call = authApi.login(email, password)
 
         call.enqueue(object : Callback<LoginResponseModel?> {

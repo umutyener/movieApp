@@ -8,6 +8,7 @@ import retrofit2.Retrofit
 
 object RetrofitClient {
 
+    //TMDB Movie Service
 
     val tmdbService: TmdbApi by lazy {
         val retrofit = Retrofit.Builder()
@@ -19,6 +20,8 @@ object RetrofitClient {
 
     }
 
+    // Auth Service
+
     private val authService = Retrofit.Builder()
         .baseUrl(Constants.baseUrl)
         .addConverterFactory(GsonConverterFactory.create())
@@ -27,4 +30,16 @@ object RetrofitClient {
     fun getAuthApi(): AuthApi {
         return authService.create(AuthApi::class.java)
     }
+
+
+    // Movie Service 2
+
+
 }
+
+
+
+
+
+
+
