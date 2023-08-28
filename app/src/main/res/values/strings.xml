@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">movie</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_text">I already have an account <font color="#6456FF">Login</font></string>
     <string name="otp_screen_resend_email_text">Did not receive  the email? Check\nyour spam filter, or <font color="#6456FF">try another email adress</font></string>
@@ -15,11 +14,9 @@
     <string name="usernameValidString">The username field must contain at least 3 characters and no more than 15 characters!</string>
     <string name="passwordMatchValidString">The username field must contain at least 3 characters and no more than 15 characters!</string>
     <string name="privacyPolicyValidString">Please accept the Privacy Policy.</string>
-    <string name="title_activity_home_page_with_compose">HomePageWithCompose</string>
     <string name="title_activity_main">MainActivity</string>
 
 
-    "passwords must be the same."
     // Error, Warning String
 
 

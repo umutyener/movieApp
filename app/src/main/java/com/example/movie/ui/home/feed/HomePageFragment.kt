@@ -1,8 +1,11 @@
 package com.example.movie.ui.home.feed
 import MainAdapter
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.example.movie.R
 import com.example.movie.data.model.movieModel.TMDBResponse
 import com.example.movie.data.repository.RetrofitClient
@@ -22,6 +25,10 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
 
     private val unexpectedErrorString: String by lazy { getString(R.string.unexpectedErrorString) }
     private val networkErrorOrServerAccessError: String by lazy { getString(R.string.networkErrorOrServerAccessError) }
+    private val handler: Handler = Handler(Looper.getMainLooper())
+    private val timerDelay: Long = 5000
+    private var currentPage = 0
+
 
 
 
@@ -29,9 +36,13 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
         super.onViewCreated(view, savedInstanceState)
 
 
+
+
         val nestedScrollView = binding.nestedScrollView
         binding.sliderRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(binding.sliderRecyclerView)
 
         getHomePageCarousel()
         getHomePageFeed()
@@ -40,31 +51,28 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
     }
 
 
-    private fun getHomePageCarousel(){
-
-
+    private fun getHomePageCarousel() {
         val call = RetrofitClient.tmdbService.getMoviesByCategory("upcoming")
 
-            call.enqueue(object : Callback<TMDBResponse> {
-                override fun onResponse(call: Call<TMDBResponse>, response: Response<TMDBResponse>) {
-                    if (response.isSuccessful) {
-                        val movieList = response.body()?.results ?: emptyList()
+        call.enqueue(object : Callback<TMDBResponse> {
+            override fun onResponse(call: Call<TMDBResponse>, response: Response<TMDBResponse>) {
+                if (response.isSuccessful) {
+                    val movieList = response.body()?.results ?: emptyList()
 
-                        carouselAdapter = CarouselAdapter(movieList)
-                        binding.sliderRecyclerView.adapter = carouselAdapter
+                    carouselAdapter = CarouselAdapter(movieList)
+                    binding.sliderRecyclerView.adapter = carouselAdapter
 
-                    } else {
-                    }
+                    handler.postDelayed(updateCarousel, timerDelay)
+                } else {
+                    // Handle error here
                 }
+            }
 
-                override fun onFailure(call: Call<TMDBResponse>, t: Throwable) {
-
-                    showSnackbar(networkErrorOrServerAccessError, R.color.snackBarCaution)
-
-                }
-            })
-        }
-
+            override fun onFailure(call: Call<TMDBResponse>, t: Throwable) {
+                // Handle failure here
+            }
+        })
+    }
 
 
     private fun getHomePageFeed() {
@@ -93,6 +101,17 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
             })
         }
     }
+
+    private val updateCarousel: Runnable = object : Runnable {
+        override fun run() {
+            if (currentPage == carouselAdapter.itemCount) {
+                currentPage = 0
+            }
+            binding.sliderRecyclerView.smoothScrollToPosition(currentPage++)
+            handler.postDelayed(this, timerDelay)
+        }
+    }
+
 
 
 }
