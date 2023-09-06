@@ -1,6 +1,5 @@
 package com.example.movie.data.network.movie
 
-import android.provider.SyncStateContract.Constants
 import com.example.movie.data.model.movieModel.TMDBResponse
 import retrofit2.Call
 import retrofit2.http.GET

@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie.R
 import com.example.movie.data.model.movieModel.Movie
+import com.example.movie.utils.Constants
 import com.squareup.picasso.Picasso
 
 
@@ -24,7 +25,7 @@ import com.squareup.picasso.Picasso
 
             val movie = movies[position]
 
-            val imageUrl = "https://image.tmdb.org/t/p/w1920_and_h1080_bestv2/${movie.backdropPath}"
+            val imageUrl = Constants.backdropBaseUrl + movie.backdropPath
 
             holder.movieTitle.text = movie.title
             holder.movieDate.text = movie.releaseDate
@@ -39,7 +40,7 @@ import com.squareup.picasso.Picasso
         inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val movieTitle: TextView = itemView.findViewById(R.id.textViewSliderTitle)
             val movieDate: TextView = itemView.findViewById(R.id.textViewSliderDate)
-            val movieImage: ImageView = itemView.findViewById(R.id.imageView7)
+            val movieImage: ImageView = itemView.findViewById(R.id.imageView)
 
         }
     }

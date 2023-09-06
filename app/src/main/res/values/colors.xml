@@ -14,6 +14,8 @@
     <color name="unselected_color">#CCCCCC</color>
     <color name="custom_toolbar_color">#AF1919</color>
     <color name="movieItemCardColor">#252836</color>
+    <color name="movieItemRatingColor">#FFA407</color>
+
 
 
 
@@ -24,7 +26,6 @@
 
     <color name="otpInactiveColor">#808080</color>
     <color name="otpActiveColor">#000000</color>
-
 
 
 

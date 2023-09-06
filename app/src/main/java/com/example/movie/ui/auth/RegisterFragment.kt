@@ -16,8 +16,6 @@ import retrofit2.Response
 
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
 
-    private val utilFunction = UtilFunctions()
-
     private val emailValidString: String by lazy { getString(R.string.emailValidString) }
     private val passwordValidString: String by lazy { getString(R.string.passwordValidString) }
     private val unexpectedErrorString: String by lazy { getString(R.string.unexpectedErrorString) }

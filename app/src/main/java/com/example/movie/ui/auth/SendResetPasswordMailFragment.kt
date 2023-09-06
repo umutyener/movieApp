@@ -16,11 +16,7 @@ import retrofit2.Response
 
 class SendResetPasswordMailFragment :  BaseFragment<FragmentSendResetPasswordMailBinding>(FragmentSendResetPasswordMailBinding::inflate){
 
-    private val utilFunction = UtilFunctions()
-
-
     private val emailValidString: String by lazy { getString(R.string.emailValidString) }
-    private val passwordValidString: String by lazy { getString(R.string.passwordValidString) }
     private val unexpectedErrorString: String by lazy { getString(R.string.unexpectedErrorString) }
     private val networkErrorOrServerAccessError: String by lazy { getString(R.string.networkErrorOrServerAccessError) }
 
@@ -83,7 +79,4 @@ class SendResetPasswordMailFragment :  BaseFragment<FragmentSendResetPasswordMai
         }
 
     }
-
-
-
 }

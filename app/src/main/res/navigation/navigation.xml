@@ -35,9 +35,6 @@
             app:destination="@id/registerOrLoginFragment"
             app:popUpTo="@id/viewPagerFragment"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_viewPagerFragment_to_detailPageFragment"
-            app:destination="@id/detailPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -112,7 +109,11 @@
         android:id="@+id/homeScreenViewPagerFragment"
         android:name="com.example.movie.ui.home.HomeScreenViewPagerFragment"
         android:label="fragment_view_pager_home"
-        tools:layout="@layout/fragment_view_pager_home" />
+        tools:layout="@layout/fragment_view_pager_home" >
+        <action
+            android:id="@+id/action_homeScreenViewPagerFragment_to_detailPageFragment"
+            app:destination="@id/detailPageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerOrLoginFragment"
         android:name="com.example.movie.ui.auth.RegisterOrLoginFragment"
@@ -129,7 +130,19 @@
         android:id="@+id/detailPageFragment"
         android:name="com.example.movie.ui.detail.DetailPageFragment"
         android:label="fragment_detail_page"
-        tools:layout="@layout/fragment_detail_page" />
+        tools:layout="@layout/fragment_detail_page" >
+        <argument
+            android:name="movieImageUrl"
+            app:argType="string" />
+        <argument
+            android:name="movieTitle"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_detailPageFragment_self"
+            app:destination="@id/detailPageFragment"
+            app:popUpTo="@id/detailPageFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 
 </navigation>

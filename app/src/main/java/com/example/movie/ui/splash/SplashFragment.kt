@@ -12,11 +12,8 @@ import com.example.movie.ui.baseFragment.BaseFragment
 
 class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding::inflate) {
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         Handler().postDelayed({
 
@@ -30,16 +27,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
     }
 
-
-
-
-
     private fun onBoardingFinished() : Boolean{
-
-
         val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
-
-
         return sharedPref.getBoolean("Finished", true)
     }
 }

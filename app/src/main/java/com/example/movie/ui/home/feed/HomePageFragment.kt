@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.example.movie.R
@@ -14,7 +15,6 @@ import com.example.movie.ui.baseFragment.BaseFragment
 import com.example.movie.ui.home.feed.homePageRvAdapter.CarouselAdapter
 import com.example.movie.utils.Constants
 import com.example.movie.utils.UtilFunctions
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,15 +28,11 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
     private val handler: Handler = Handler(Looper.getMainLooper())
     private val timerDelay: Long = 5000
     private var currentPage = 0
-
-
+    val navController by lazy { findNavController() }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
 
         val nestedScrollView = binding.nestedScrollView
         binding.sliderRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -46,7 +42,7 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
 
         getHomePageCarousel()
         getHomePageFeed()
-        UtilFunctions.setupNestedScrollViewWithAnimatedBottomNavHiding(nestedScrollView,requireActivity().findViewById<BottomNavigationView>(R.id.bottomNav))
+        UtilFunctions.setupNestedScrollViewWithAnimatedBottomNavHiding(nestedScrollView,requireActivity().findViewById(R.id.bottomNav))
 
     }
 
@@ -88,10 +84,10 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
                         val tmdbResponse = response.body()
                         tmdbResponse?.let {
                             mainModels.add(it)
-                            binding.homepageRvMain.adapter = MainAdapter(mainModels)
+                            binding.homepageRvMain.adapter = MainAdapter(mainModels, navController)
                         }
                     } else {
-                        showSnackbar("$unexpectedErrorString", R.color.snackBarDanger)
+                        showSnackbar(unexpectedErrorString, R.color.snackBarDanger)
                     }
                 }
 
@@ -104,10 +100,14 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
 
     private val updateCarousel: Runnable = object : Runnable {
         override fun run() {
-            if (currentPage == carouselAdapter.itemCount) {
-                currentPage = 0
+            val layoutManager = binding.sliderRecyclerView.layoutManager as LinearLayoutManager
+            val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
+
+            if (lastVisibleItemPosition >= 0) {
+                currentPage = (lastVisibleItemPosition + 1) % carouselAdapter.itemCount
             }
-            binding.sliderRecyclerView.smoothScrollToPosition(currentPage++)
+
+            binding.sliderRecyclerView.smoothScrollToPosition(currentPage)
             handler.postDelayed(this, timerDelay)
         }
     }
