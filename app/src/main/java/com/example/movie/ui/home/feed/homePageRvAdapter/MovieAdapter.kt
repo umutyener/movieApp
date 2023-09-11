@@ -20,6 +20,7 @@ class MovieAdapter(private val movieModel: List<Movie>, private val navControlle
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
 
         val imageUrl = movieModel[position].posterPath
+        val movieOverview = movieModel[position].overview
         val movieTitle = movieModel[position].originalTitle
         val voteAverage = movieModel[position].voteAverage.toString()
 
@@ -35,13 +36,11 @@ class MovieAdapter(private val movieModel: List<Movie>, private val navControlle
 
         holder.itemView.setOnClickListener {
 
-            val action = HomeScreenViewPagerFragmentDirections.actionHomeScreenViewPagerFragmentToDetailPageFragment( movieModel[position].posterPath.toString(),movieModel[position].originalTitle)
+         val action = HomeScreenViewPagerFragmentDirections.actionHomeScreenViewPagerFragment2ToDetailPageFragment(movieModel[position].title,movieModel[position].posterPath.toString(),movieModel[position].overview)
             navController.navigate(action)
         }
 
     }
-
-
 
     override fun getItemCount() = movieModel.size
 

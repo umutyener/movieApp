@@ -9,7 +9,6 @@ import com.example.movie.R
 import com.example.movie.data.model.movieModel.Movie
 import com.example.movie.databinding.DetailpageRvMovieItemBinding
 import com.example.movie.ui.detail.DetailPageFragmentDirections
-import com.example.movie.ui.home.HomeScreenViewPagerFragmentDirections
 import com.example.movie.utils.Constants
 import com.squareup.picasso.Picasso
 
@@ -42,15 +41,13 @@ class DetailPageMovieAdapter (private val movieModel: List<Movie>, private val n
 
         holder.itemView.setOnClickListener {
 
-            val action = DetailPageFragmentDirections.actionDetailPageFragmentSelf( movieModel[position].posterPath.toString(),movieModel[position].originalTitle)
+            val action = DetailPageFragmentDirections.actionDetailPageFragmentSelf( movieModel[position].posterPath.toString(),movieModel[position].originalTitle, movieModel[position].overview)
             navController.navigate(action)
         }
 
     }
 
-
-
-    override fun getItemCount() = movieModel.size
+    override fun getItemCount() = minOf(movieModel.size, 18)
 
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = DetailpageRvMovieItemBinding.bind(itemView)

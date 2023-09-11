@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeScreenViewPagerFragment">
+    app:startDestination="@id/homeScreenViewPagerFragment2">
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.movie.ui.splash.SplashFragment"
@@ -15,15 +15,13 @@
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_splashFragment_to_homePageFragment"
-            app:destination="@id/homeScreenViewPagerFragment"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_splashFragment_to_registerOrLoginFragment"
             app:destination="@id/registerOrLoginFragment"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_homeScreenViewPagerFragment2"
+            app:destination="@id/homeScreenViewPagerFragment2" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
@@ -42,16 +40,14 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_homePageFragment"
-            app:destination="@id/homeScreenViewPagerFragment"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
         <action
             android:id="@+id/action_loginFragment_to_resetPasswordFragment"
             app:destination="@id/resetPasswordFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeScreenViewPagerFragment2"
+            app:destination="@id/homeScreenViewPagerFragment2" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -61,6 +57,9 @@
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <argument
+            android:name="deneme"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
@@ -106,15 +105,6 @@
 
     </fragment>
     <fragment
-        android:id="@+id/homeScreenViewPagerFragment"
-        android:name="com.example.movie.ui.home.HomeScreenViewPagerFragment"
-        android:label="fragment_view_pager_home"
-        tools:layout="@layout/fragment_view_pager_home" >
-        <action
-            android:id="@+id/action_homeScreenViewPagerFragment_to_detailPageFragment"
-            app:destination="@id/detailPageFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/registerOrLoginFragment"
         android:name="com.example.movie.ui.auth.RegisterOrLoginFragment"
         android:label="fragment_register_or_login"
@@ -127,21 +117,31 @@
             app:destination="@id/registerFragment" />
     </fragment>
     <fragment
+        android:id="@+id/homeScreenViewPagerFragment2"
+        android:name="com.example.movie.ui.home.HomeScreenViewPagerFragment"
+        android:label="fragment_view_pager_home"
+        tools:layout="@layout/fragment_view_pager_home" >
+        <action
+            android:id="@+id/action_homeScreenViewPagerFragment2_to_detailPageFragment"
+            app:destination="@id/detailPageFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/detailPageFragment"
         android:name="com.example.movie.ui.detail.DetailPageFragment"
         android:label="fragment_detail_page"
         tools:layout="@layout/fragment_detail_page" >
         <argument
+            android:name="movieTitle"
+            app:argType="string" />
+        <argument
             android:name="movieImageUrl"
             app:argType="string" />
         <argument
-            android:name="movieTitle"
+            android:name="movieOverview"
             app:argType="string" />
         <action
             android:id="@+id/action_detailPageFragment_self"
-            app:destination="@id/detailPageFragment"
-            app:popUpTo="@id/detailPageFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/detailPageFragment" />
     </fragment>
 
 

@@ -1,6 +1,4 @@
 package com.example.movie.ui.detail
-
-
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
@@ -19,13 +17,13 @@ import com.example.movie.ui.baseFragment.BaseFragment
 import com.example.movie.ui.detail.detailPageRvAdapter.DetailPageMovieAdapter
 import com.example.movie.utils.Constants
 import com.squareup.picasso.Picasso
+import jp.wasabeef.blurry.Blurry
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailPageFragment :
-    BaseFragment<FragmentDetailPageBinding>(FragmentDetailPageBinding::inflate) {
 
+class DetailPageFragment : BaseFragment<FragmentDetailPageBinding>(FragmentDetailPageBinding::inflate) {
 
     private lateinit var movieAdapter: DetailPageMovieAdapter
     private var originalStatusBarColor: Int = 0
@@ -39,6 +37,7 @@ class DetailPageFragment :
 
         binding.toolbarTitle.isSelected = true
         binding.toolbarTitle.text = args.movieTitle
+
         originalStatusBarColor = activity?.window?.statusBarColor ?: Color.TRANSPARENT
 
 
@@ -59,11 +58,13 @@ class DetailPageFragment :
 
         (activity as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        getHomePageCarousel()
+        getDetailPageSimilarMovie()
+        getMovieOverview()
 
     }
 
-    private fun getHomePageCarousel() {
+    private fun getDetailPageSimilarMovie() {
+
         val call = RetrofitClient.tmdbService.getMoviesByCategory("upcoming")
 
         call.enqueue(object : Callback<TMDBResponse> {
@@ -93,8 +94,45 @@ class DetailPageFragment :
         })
     }
 
+    private fun getMovieOverview() {
+        val maxLinesToShow = 8
+        val originalText = args.movieOverview
+        val buttonSeeMore = binding.ImageViewSeeMore
+        val textViewMovieStory = binding.textViewMovieStory
 
-        override fun onDestroyView() {
+        textViewMovieStory.text = originalText
+
+        textViewMovieStory.post {
+            val layout = textViewMovieStory.layout
+            val lineCount = layout.lineCount
+
+            if (lineCount <= maxLinesToShow) {
+
+                buttonSeeMore.visibility = View.GONE
+            } else {
+
+                buttonSeeMore.visibility = View.VISIBLE
+                textViewMovieStory.maxLines = maxLinesToShow
+
+                buttonSeeMore.setOnClickListener {
+                    if (textViewMovieStory.maxLines == Int.MAX_VALUE) {
+
+                        textViewMovieStory.maxLines = maxLinesToShow
+
+                   //     binding.ImageViewSeeMore.setImageResource(android.R.drawable.btn_minus)
+
+                    } else {
+
+                        textViewMovieStory.maxLines = Int.MAX_VALUE
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    override fun onDestroyView() {
             super.onDestroyView()
 
             activity?.window?.statusBarColor = originalStatusBarColor

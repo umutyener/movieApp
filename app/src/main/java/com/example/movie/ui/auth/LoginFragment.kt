@@ -63,7 +63,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                     if (response.isSuccessful) {
                         val authResponse = response.body()
                         if (authResponse != null) {
-                            findNavController().navigate(R.id.action_loginFragment_to_homePageFragment)
+                            findNavController().navigate(R.id.action_loginFragment_to_homeScreenViewPagerFragment2)
                         } else {
 
                             UtilFunctions.buttonProgress(
@@ -87,7 +87,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
                 override fun onFailure(call: Call<LoginResponseModel?>, t: Throwable) {
                     UtilFunctions.buttonProgress(binding.buttonLogin, binding.progressBar, false)
-                    findNavController().navigate(R.id.action_loginFragment_to_homePageFragment)
+                    findNavController().navigate(R.id.action_loginFragment_to_homeScreenViewPagerFragment2)
 
                     showSnackbar(networkErrorOrServerAccessError, R.color.snackBarDanger)
 
