@@ -1,15 +1,21 @@
 package com.example.movie.ui.detail
+
+import android.animation.ValueAnimator
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.view.animation.DecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.doOnEnd
 import androidx.core.view.ViewCompat
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.movie.R
 import com.example.movie.data.model.movieModel.TMDBResponse
 import com.example.movie.data.repository.RetrofitClient
 import com.example.movie.databinding.FragmentDetailPageBinding
@@ -17,13 +23,14 @@ import com.example.movie.ui.baseFragment.BaseFragment
 import com.example.movie.ui.detail.detailPageRvAdapter.DetailPageMovieAdapter
 import com.example.movie.utils.Constants
 import com.squareup.picasso.Picasso
-import jp.wasabeef.blurry.Blurry
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class DetailPageFragment : BaseFragment<FragmentDetailPageBinding>(FragmentDetailPageBinding::inflate) {
+class DetailPageFragment :
+    BaseFragment<FragmentDetailPageBinding>(FragmentDetailPageBinding::inflate) {
+
 
     private lateinit var movieAdapter: DetailPageMovieAdapter
     private var originalStatusBarColor: Int = 0
@@ -41,9 +48,12 @@ class DetailPageFragment : BaseFragment<FragmentDetailPageBinding>(FragmentDetai
         originalStatusBarColor = activity?.window?.statusBarColor ?: Color.TRANSPARENT
 
 
-        Picasso.get().load(Constants.posterBaseUrl + args.movieImageUrl).into(binding.imageViewDetailPagePosterImage)
+        Picasso.get().load(Constants.posterBaseUrl + args.movieImageUrl)
+            .placeholder(R.drawable.error_image).error(R.drawable.error_image)
+            .into(binding.imageViewDetailPagePosterImage)
         Picasso.get().load(Constants.posterBaseUrl + args.movieImageUrl)
             .into(binding.ImageViewDetailPageBackroundImage)
+
 
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.toolbarDetailPage) { view, insets ->
@@ -65,7 +75,7 @@ class DetailPageFragment : BaseFragment<FragmentDetailPageBinding>(FragmentDetai
 
     private fun getDetailPageSimilarMovie() {
 
-        val call = RetrofitClient.tmdbService.getMoviesByCategory("upcoming")
+        val call = RetrofitClient.tmdbService.getMoviesByCategory("${args.movieId}/similar")
 
         call.enqueue(object : Callback<TMDBResponse> {
             override fun onResponse(call: Call<TMDBResponse>, response: Response<TMDBResponse>) {
@@ -94,48 +104,54 @@ class DetailPageFragment : BaseFragment<FragmentDetailPageBinding>(FragmentDetai
         })
     }
 
+
     private fun getMovieOverview() {
-        val maxLinesToShow = 8
+        val maxLinesToShow = 6
         val originalText = args.movieOverview
-        val buttonSeeMore = binding.ImageViewSeeMore
-        val textViewMovieStory = binding.textViewMovieStory
+        val buttonSeeMore = binding.buttonSeeMore
+        val textViewMovieOverview = binding.textViewMovieStory
+        val buttonSeeMoreText = binding.textViewSeeMoreButtonText
 
-        textViewMovieStory.text = originalText
-
-        textViewMovieStory.post {
-            val layout = textViewMovieStory.layout
+        textViewMovieOverview.text = originalText
+        textViewMovieOverview.post {
+            val layout = textViewMovieOverview.layout
             val lineCount = layout.lineCount
 
-            if (lineCount <= maxLinesToShow) {
+            Log.e("textViewMovieStory", textViewMovieOverview.text.toString())
 
-                buttonSeeMore.visibility = View.GONE
+            if (textViewMovieOverview.text.isEmpty()) {
+
+                binding.textViewStoryLineMenuTitle.visibility = View.GONE
+                binding.textViewMovieStory.visibility = View.GONE
+
             } else {
 
-                buttonSeeMore.visibility = View.VISIBLE
-                textViewMovieStory.maxLines = maxLinesToShow
+                if (lineCount <= maxLinesToShow) {
+                    buttonSeeMore.visibility = View.GONE
+                } else {
+                    buttonSeeMore.visibility = View.VISIBLE
+                    buttonSeeMoreText.text = "Show more"
+                    textViewMovieOverview.maxLines = maxLinesToShow
+                    buttonSeeMore.setOnClickListener {
+                        buttonSeeMoreText.text = "Show more"
+                        if (textViewMovieOverview.maxLines == Int.MAX_VALUE) {
+                            textViewMovieOverview.maxLines = maxLinesToShow
+                        } else {
+                            textViewMovieOverview.maxLines = Int.MAX_VALUE
+                            buttonSeeMoreText.text = "Show less"
 
-                buttonSeeMore.setOnClickListener {
-                    if (textViewMovieStory.maxLines == Int.MAX_VALUE) {
-
-                        textViewMovieStory.maxLines = maxLinesToShow
-
-                   //     binding.ImageViewSeeMore.setImageResource(android.R.drawable.btn_minus)
-
-                    } else {
-
-                        textViewMovieStory.maxLines = Int.MAX_VALUE
+                        }
                     }
                 }
             }
         }
     }
 
-
-
     override fun onDestroyView() {
-            super.onDestroyView()
+        super.onDestroyView()
 
-            activity?.window?.statusBarColor = originalStatusBarColor
-            activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        }
+        activity?.window?.statusBarColor = originalStatusBarColor
+        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
     }
+}
+

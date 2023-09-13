@@ -19,25 +19,19 @@ class MovieAdapter(private val movieModel: List<Movie>, private val navControlle
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
 
-        val imageUrl = movieModel[position].posterPath
-        val movieOverview = movieModel[position].overview
         val movieTitle = movieModel[position].originalTitle
         val voteAverage = movieModel[position].voteAverage.toString()
+        val imageUrl = movieModel[position].posterPath
 
-        val trimmedText = if (movieTitle.length > 40) {
-            movieTitle.substring(0, 25) + "..."
-        } else {
-            movieTitle
-        }
+        val trimmedText = if (movieTitle.length > 40) movieTitle.substring(0, 25) + "..." else movieTitle
+
         holder.binding.textViewMovieName.text =  trimmedText
         holder.binding.textView2.text =  voteAverage
 
         Picasso.get().load(Constants.posterBaseUrl+imageUrl).into(holder.binding.imageView4)
 
         holder.itemView.setOnClickListener {
-
-         val action = HomeScreenViewPagerFragmentDirections.actionHomeScreenViewPagerFragment2ToDetailPageFragment(movieModel[position].title,movieModel[position].posterPath.toString(),movieModel[position].overview)
-            navController.navigate(action)
+         navController.navigate(HomeScreenViewPagerFragmentDirections.actionHomeScreenViewPagerFragment2ToDetailPageFragment(movieModel[position].title, movieModel[position].posterPath, movieModel[position].overview, movieModel[position].id))
         }
 
     }

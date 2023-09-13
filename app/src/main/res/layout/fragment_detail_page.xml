@@ -67,10 +67,10 @@
                 android:id="@+id/ImageViewDetailPageBackroundImage"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginBottom="-24dp"
                 android:alpha="0.10"
                 android:scaleType="centerCrop"
                 android:src="@drawable/detail_page_bg"
-                android:layout_marginBottom="-16dp"
                 app:layout_constraintBottom_toBottomOf="@id/constrainLayoutMovieScoreAndTrailerButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -312,15 +312,32 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textViewStoryLineMenuTitle" />
 
-                <ImageView
-                    android:id="@+id/ImageViewSeeMore"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/buttonSeeMore"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
                     android:layout_marginTop="8dp"
-                    android:src="@drawable/baseline_keyboard_arrow_down_24"
+                    android:background="@drawable/detailpage_rate_custom_border"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewMovieStory" />
+                    app:layout_constraintTop_toBottomOf="@id/textViewMovieStory">
+
+
+                    <TextView
+                        android:id="@+id/textViewSeeMoreButtonText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#92929D"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -409,9 +426,5 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.core.widget.NestedScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
