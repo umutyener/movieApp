@@ -40,6 +40,7 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.sliderRecyclerView)
 
+
         getHomePageCarousel()
         getHomePageFeed()
         UtilFunctions.setupNestedScrollViewWithAnimatedBottomNavHiding(nestedScrollView,requireActivity().findViewById(R.id.bottomNav))
@@ -110,10 +111,12 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
             binding.sliderRecyclerView.smoothScrollToPosition(currentPage)
             handler.postDelayed(this, timerDelay)
         }
-    }
+    }}
 
 
 
-}
+
+
+
 
 

@@ -19,7 +19,7 @@ class MovieAdapter(private val movieModel: List<Movie>, private val navControlle
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
 
-        val movieTitle = movieModel[position].originalTitle
+        val movieTitle = movieModel[position].title
         val voteAverage = movieModel[position].voteAverage.toString()
         val imageUrl = movieModel[position].posterPath
 
@@ -28,7 +28,7 @@ class MovieAdapter(private val movieModel: List<Movie>, private val navControlle
         holder.binding.textViewMovieName.text =  trimmedText
         holder.binding.textView2.text =  voteAverage
 
-        Picasso.get().load(Constants.posterBaseUrl+imageUrl).into(holder.binding.imageView4)
+        Picasso.get().load(Constants.posterBaseUrl+imageUrl).error(R.drawable.placeholder_image).placeholder(R.drawable.placeholder_image).into(holder.binding.imageView4)
 
         holder.itemView.setOnClickListener {
          navController.navigate(HomeScreenViewPagerFragmentDirections.actionHomeScreenViewPagerFragment2ToDetailPageFragment(movieModel[position].title, movieModel[position].posterPath, movieModel[position].overview, movieModel[position].id))

@@ -65,8 +65,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sliderRecyclerView"
-                tools:listitem="@layout/homepage_rv_parent_item" />
+                tools:listitem="@layout/homepage_rv_parent_item" >
 
+            </androidx.recyclerview.widget.RecyclerView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

@@ -147,6 +147,10 @@
             android:id="@+id/action_detailPageFragment_self"
             app:destination="@id/detailPageFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailPageFragmentSwipeRefleshDeneme"
+        android:name="com.example.movie.ui.detail.detailPageFragmentSwipeRefleshDeneme"
+        android:label="detailPageFragmentSwipeRefleshDeneme" />
 
 
 </navigation>

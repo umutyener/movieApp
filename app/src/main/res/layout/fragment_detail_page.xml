@@ -1,13 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ConstraitLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
-    tools:context=".ui.detail.DetailPageFragment">
-
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
@@ -25,43 +20,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarDetailPage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:nestedScrollingEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:navigationIcon="@drawable/baseline_arrow_back_ios_24">
-
-
-                <TextView
-                    android:id="@+id/toolbar_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:ellipsize="marquee"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:letterSpacing="0.12"
-                    android:marqueeRepeatLimit="marquee_forever"
-                    android:scrollHorizontally="true"
-                    android:singleLine="true"
-                    android:text="Spider-Man No Way.."
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    android:typeface="normal"
-                    tools:ignore="RtlCompat"
-                    tools:layout_editor_absoluteX="95dp"
-                    tools:layout_editor_absoluteY="19dp" />
-
-
-            </androidx.appcompat.widget.Toolbar>
-
-
             <ImageView
 
                 android:id="@+id/ImageViewDetailPageBackroundImage"
@@ -70,34 +28,54 @@
                 android:layout_marginBottom="-24dp"
                 android:alpha="0.10"
                 android:scaleType="centerCrop"
-                android:src="@drawable/detail_page_bg"
                 app:layout_constraintBottom_toBottomOf="@id/constrainLayoutMovieScoreAndTrailerButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <View
-                android:id="@+id/view3"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/rate"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="35dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/detailpage_rate_custom_border"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayoutDescription" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayoutDescription">
+
+
+                <TextView
+                    android:id="@+id/textViewRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:text="Rate"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/baseline_star_border_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <androidx.cardview.widget.CardView
 
                 android:id="@+id/cardViewDetailPage"
                 android:layout_width="205dp"
                 android:layout_height="287dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="124dp"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbarDetailPage">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
 
@@ -105,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/detail_page_bg" />
+                    android:src="@drawable/placeholder_image" />
 
             </androidx.cardview.widget.CardView>
 
@@ -180,6 +158,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
+
                     <ImageView
                         android:id="@+id/imageViewGenreIcon"
                         android:layout_width="wrap_content"
@@ -222,11 +201,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view3">
+                app:layout_constraintTop_toBottomOf="@+id/rate">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -292,9 +271,10 @@
                     android:id="@+id/textViewStoryLineMenuTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:letterSpacing="0.1"
+                    android:letterSpacing="0.05"
                     android:text="Overview"
                     android:textAlignment="viewStart"
+                    android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -316,12 +296,11 @@
                     android:id="@+id/buttonSeeMore"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/detailpage_rate_custom_border"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/detailpage_see_more_custom_border"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/textViewMovieStory">
-
 
                     <TextView
                         android:id="@+id/textViewSeeMoreButtonText"
@@ -334,14 +313,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-
-
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayoutCastAndCrew"
@@ -359,14 +331,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:letterSpacing="0.1"
+                    android:letterSpacing="0.05"
                     android:text="Cast and Crew"
+                    android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/detail_page_cast_item"
+                    tools:itemCount="20"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayoutGalery"
@@ -386,14 +365,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:letterSpacing="0.1"
+                    android:letterSpacing="0.05"
                     android:text="Galery"
+                    android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
             <TextView
@@ -403,8 +382,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:letterSpacing="0.1"
+                android:letterSpacing="0.05"
                 android:text="Similar Movies"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -424,7 +404,33 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewSimilarMoviesMenuTitle"
                 tools:listitem="@layout/detailpage_rv_movie_item" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarDetailPage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B91F1D2B"
+        app:navigationIcon="@drawable/baseline_arrow_back_ios_24">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:letterSpacing="0.12"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:text="Spider-Man No Way.."
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:typeface="normal" />
+
+    </androidx.appcompat.widget.Toolbar>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

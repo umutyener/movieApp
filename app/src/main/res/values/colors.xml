@@ -18,5 +18,7 @@
     <color name="snackBarSafety">#4CAF50</color>
     <color name="otpInactiveColor">#808080</color>
     <color name="otpActiveColor">#000000</color>
+    <color name="denemeStatusBarColor">#B91F1D2B</color>
+
 
 </resources>
