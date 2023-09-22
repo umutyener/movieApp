@@ -31,10 +31,6 @@ object RetrofitClient {
         return authService.create(AuthApi::class.java)
     }
 
-
-
-
-
 }
 
 

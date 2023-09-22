@@ -1,43 +1,52 @@
 package com.example.movie.ui.detail.detailPageRvAdapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie.R
-import com.example.movie.data.model.movieModel.Movie
+import com.example.movie.data.model.movieModel.Cast
 import com.example.movie.databinding.DetailPageCastItemBinding
-import com.example.movie.databinding.DetailpageRvMovieItemBinding
-import com.example.movie.ui.detail.DetailPageFragmentDirections
 import com.example.movie.utils.Constants
 import com.squareup.picasso.Picasso
+class DetailPageCastAdapter(private val castModel: List<Cast>, private val navController: NavController) : RecyclerView.Adapter<DetailPageCastAdapter.CastViewHolder>(){
 
-class DetailPageCastAdapter(private val movieModel: List<Movie>, private val navController: NavController) : RecyclerView.Adapter<DetailPageCastAdapter.MovieViewHolder>(){
-
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.detail_page_cast_item, parent, false)
-        return MovieViewHolder(view)
+        return CastViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-
-        val castName = movieModel[position].title
-        val imageUrl = movieModel[position].posterPath
+    override fun onBindViewHolder(holder: CastViewHolder, position: Int) {
 
 
+        Log.e("CAST LIST",castModel[1].name)
 
-        Picasso.get().load(Constants.posterBaseUrl+imageUrl).placeholder(R.drawable.placeholder_image).error(R.drawable.placeholder_image).into(holder.binding.imageView4)
 
-       // holder.itemView.setOnClickListener { navController.navigate(DetailPageFragmentDirections.actionDetailPageFragmentSelf(movieModel[position].title, movieModel[position].posterPath, movieModel[position].overview,movieModel[position].id)) }
+        val castName = castModel[position].name
+        val characterName = castModel[position].character
+        val charaterGender = castModel[position].gender
+        var placeHolderPhoto = R.drawable.cast_woman
+
+        placeHolderPhoto = if (charaterGender == 1) R.drawable.cast_woman else R.drawable.cast_man //( I am not homophobic.)
+
+
+        val imageUrl = castModel[position].profilePath
+        holder.binding.textView12.text =  castName
+        holder.binding.textView13.text =  characterName
+
+
+
+        Picasso.get().load(Constants.posterBaseUrl+imageUrl).error(placeHolderPhoto).placeholder(placeHolderPhoto).into(holder.binding.imageView6)
+
+
 
     }
 
-    override fun getItemCount() = minOf(movieModel.size, 18)
+    override fun getItemCount() = castModel.size
 
-    inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CastViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = DetailPageCastItemBinding.bind(itemView)
     }
 

@@ -34,7 +34,6 @@
         @SerializedName("vote_count") val voteCount: Int
     )
 
-
     data class BelongsToCollection(
         @SerializedName("id") val id: Int,
         @SerializedName("name") val name: String,
